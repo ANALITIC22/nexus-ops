@@ -222,7 +222,7 @@ function openModal(id) {
     if (id === 'modal-nueva-tarea')    populateTareaMatrizSelect();
     if (id === 'modal-nuevo-reporte')  populateReporteMatrizSelect();
     if (id === 'modal-editar-perfil')  prefillPerfilModal();
-    if (id === 'modal-nueva-matriz')   clearMatrizModal();
+    if (id === 'modal-nueva-matriz' && !AppState.editingId)   clearMatrizModal();
   }
 }
 

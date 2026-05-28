@@ -1,0 +1,39 @@
+<!--
+  PÁGINA: Matrices Operativas
+  Archivo: pages/matrices.html
+  ID de sección: page-matrices
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-matrices">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Matrices Operativas</div>
+      <div class="page-subtitle">Aplicativos · Operaciones · Sistemas · Plataformas · Procesos</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary" onclick="toggleView()">⊞ Vista</button>
+      <button class="btn btn-primary" onclick="openModal('modal-nueva-matriz')">+ Nueva Matriz</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" class="filter-input" placeholder="🔍  Buscar matrices..." oninput="filterMatrices(this.value)">
+    <select class="filter-select" onchange="filterMatricesByType(this.value)">
+      <option value="">Todos los tipos</option>
+      <option>Aplicativo</option>
+      <option>Operación</option>
+      <option>Plataforma</option>
+      <option>Sistema</option>
+      <option>Proceso</option>
+    </select>
+    <select class="filter-select">
+      <option value="">Todos los estados</option>
+      <option>Al día</option>
+      <option>Pendiente</option>
+      <option>Crítico</option>
+    </select>
+  </div>
+
+  <div class="grid-auto" id="matrices-grid"></div>
+</section>

@@ -1,0 +1,335 @@
+<!--
+  PÁGINA: Reportes
+  Archivo: pages/reportes.html
+  ID de sección: page-reportes
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-reportes">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Reportes</div>
+      <div class="page-subtitle">Generación y gestión de reportes corporativos</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-primary" onclick="openModal('modal-nuevo-reporte')">+ Nuevo Reporte</button>
+    </div>
+  </div>
+
+  <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:22px">
+    <div class="stat-card">
+      <div class="stat-label">Reportes Este Mes</div>
+      <div class="stat-value">7</div>
+      <div class="stat-icon-bg">▦</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Pendientes</div>
+      <div class="stat-value" style="color:var(--yellow)">2</div>
+      <div class="stat-icon-bg">⚠</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Aprobados</div>
+      <div class="stat-value" style="color:var(--green)">5</div>
+      <div class="stat-icon-bg">✓</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Matriz</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="reportes-tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+
+<!--
+  PÁGINA: Perfil Profesional
+  Archivo: pages/perfil.html
+  ID de sección: page-perfil
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-perfil">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Perfil Profesional</div>
+      <div class="page-subtitle">Información ejecutiva y competencias</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-primary" onclick="openModal('modal-editar-perfil')">✎ Editar Perfil</button>
+    </div>
+  </div>
+
+  <div class="grid-2" style="align-items:start">
+    <div>
+      <div class="profile-banner"></div>
+      <div class="profile-card-body">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar" id="profileAvatarBig">AC</div>
+        </div>
+        <div class="profile-name" id="profileName">Analista Corporativo</div>
+        <div class="profile-role" id="profileRole">Analista Senior · Gestión Operativa</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px" id="profileInfo">
+          <div>
+            <div class="card-label">Área</div>
+            <div style="font-size:13px;color:var(--text-b);margin-top:3px" id="profileArea">Tecnología e Innovación</div>
+          </div>
+          <div>
+            <div class="card-label">Correo</div>
+            <div style="font-size:13px;color:var(--text-b);margin-top:3px" id="profileEmail">analista@empresa.com</div>
+          </div>
+          <div>
+            <div class="card-label">Teléfono</div>
+            <div style="font-size:13px;color:var(--text-b);margin-top:3px" id="profilePhone">+57 300 000 0000</div>
+          </div>
+          <div>
+            <div class="card-label">Cargo</div>
+            <div style="font-size:13px;color:var(--text-b);margin-top:3px" id="profileCargo">Analista Senior</div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin-bottom:8px">Descripción Profesional</div>
+        <div style="font-size:13px;color:var(--text-b);line-height:1.7;margin-bottom:18px" id="profileDesc">
+          Analista corporativo con experiencia en gestión operativa, administración de aplicativos y seguimiento de procesos.
+          Especializado en análisis de datos, documentación técnica y coordinación de operaciones críticas.
+        </div>
+
+        <div class="card-label" style="margin-bottom:8px">Habilidades</div>
+        <div id="profileSkills">
+          <span class="skill-tag">Análisis de Datos</span>
+          <span class="skill-tag">Gestión Operativa</span>
+          <span class="skill-tag">SAP</span>
+          <span class="skill-tag">Documentación Técnica</span>
+          <span class="skill-tag">Control de Procesos</span>
+          <span class="skill-tag">Reportes Ejecutivos</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Aplicativos que Maneja</div></div>
+        <div id="profileApps"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Estadísticas</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="text-align:center;padding:16px;background:var(--gold-10);border-radius:var(--radius-m)">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--deep)">5</div>
+            <div style="font-size:11px;color:var(--text-m)">Matrices Activas</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--gold-10);border-radius:var(--radius-m)">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--deep)">47</div>
+            <div style="font-size:11px;color:var(--text-m)">Registros Totales</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--gold-10);border-radius:var(--radius-m)">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--deep)">12</div>
+            <div style="font-size:11px;color:var(--text-m)">Reportes Generados</div>
+          </div>
+          <div style="text-align:center;padding:16px;background:var(--gold-10);border-radius:var(--radius-m)">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--green)">94%</div>
+            <div style="font-size:11px;color:var(--text-m)">Cumplimiento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--
+  PÁGINA: Configuración
+  Archivo: pages/config.html
+  ID de sección: page-config
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-config">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Configuración</div>
+      <div class="page-subtitle">Preferencias del sistema y administración</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="card-header"><div class="card-title">General</div></div>
+        <div class="form-group">
+          <label class="form-label">Nombre del Sistema</label>
+          <input class="form-control" id="configSistemaNombre" value="NEXUS OPS — Panel Administrador">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Zona Horaria</label>
+          <select class="form-control" id="configZonaHoraria">
+            <option value="America/Bogota">America/Bogota (COT -5)</option>
+            <option value="America/Mexico_City">America/Mexico_City (CST -6)</option>
+            <option value="America/Santiago">America/Santiago (CLT -4)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Idioma</label>
+          <select class="form-control" id="configIdioma">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="saveConfig()">Guardar Cambios</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Apariencia y Notificaciones</div></div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--deep)">Modo Oscuro</div>
+              <div style="font-size:11px;color:var(--text-m)">Alternar entre tema claro y oscuro</div>
+            </div>
+            <label style="cursor:pointer;position:relative;display:inline-block;width:38px;height:20px">
+              <input type="checkbox" id="themeToggleConfig" style="opacity:0;width:0;height:0">
+              <span style="position:absolute;inset:0;background:var(--gold);border-radius:10px;transition:background 0.2s"></span>
+            </label>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--deep)">Tareas críticas</div>
+              <div style="font-size:11px;color:var(--text-m)">Alerta cuando una tarea entra en estado crítico</div>
+            </div>
+            <label style="cursor:pointer;position:relative;display:inline-block;width:38px;height:20px">
+              <input type="checkbox" id="configNotifTareas" checked style="opacity:0;width:0;height:0">
+              <span style="position:absolute;inset:0;background:var(--gold);border-radius:10px;"></span>
+            </label>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--deep)">Recordatorios de objetivos</div>
+              <div style="font-size:11px;color:var(--text-m)">Avisos de fechas límite próximas</div>
+            </div>
+            <label style="cursor:pointer;position:relative;display:inline-block;width:38px;height:20px">
+              <input type="checkbox" id="configNotifObjetivos" checked style="opacity:0;width:0;height:0">
+              <span style="position:absolute;inset:0;background:var(--gold);border-radius:10px;"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">Preparación Firebase</div></div>
+      <div style="padding:16px;background:var(--gold-10);border-radius:var(--radius-m);border:1px solid var(--border-g);margin-bottom:16px">
+        <div style="font-size:12px;font-weight:600;color:var(--deep);margin-bottom:6px">🔥 Estado de Integración</div>
+        <div style="font-size:12px;color:var(--text-b)">El sistema está arquitectónicamente preparado para conectarse con Firebase, Supabase o cualquier API REST.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-s)">
+          <span style="font-size:18px">🔥</span>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:500;color:var(--deep)">Firebase Auth</div>
+            <div style="font-size:11px;color:var(--text-m)">Autenticación de usuarios</div>
+          </div>
+          <span class="badge badge-yellow">Pendiente</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-s)">
+          <span style="font-size:18px">📊</span>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:500;color:var(--deep)">Firestore DB</div>
+            <div style="font-size:11px;color:var(--text-m)">Base de datos en tiempo real</div>
+          </div>
+          <span class="badge badge-yellow">Pendiente</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-s)">
+          <span style="font-size:18px">📦</span>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:500;color:var(--deep)">Firebase Storage</div>
+            <div style="font-size:11px;color:var(--text-m)">Almacenamiento de diagramas</div>
+          </div>
+          <span class="badge badge-yellow">Pendiente</span>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:18px">
+        <label class="form-label">API Key Firebase (preparado)</label>
+        <input class="form-control" placeholder="AIza..." disabled style="opacity:0.5">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project ID (preparado)</label>
+        <input class="form-control" placeholder="nexus-ops-..." disabled style="opacity:0.5">
+      </div>
+      <button class="btn btn-ghost" onclick="showToast('Próximamente: conectar Firebase','warning')">Configurar Firebase →</button>
+    </div>
+  </div>
+</section>
+
+
+<!--
+  PÁGINA: Peticiones
+  Archivo: pages/peticiones.html
+  ID de sección: page-peticiones
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-peticiones">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Peticiones del Panel Ejecutivo</div>
+      <div class="page-subtitle">Solicitudes enviadas por el personal · Acepta o deniega en tiempo real</div>
+    </div>
+  </div>
+
+  <div class="stats-grid" style="margin-bottom:22px">
+    <div class="stat-card" style="cursor:pointer" onclick="filterPeticiones('todas',document.getElementById('petFiltTodas'))">
+      <div class="stat-label">Total Peticiones</div>
+      <div class="stat-value" id="pet-count-todas">–</div>
+      <div class="stat-icon-bg">📋</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;border-left:3px solid var(--yellow)" onclick="filterPeticiones('pendiente',document.getElementById('petFiltPend'))">
+      <div class="stat-label">Pendientes</div>
+      <div class="stat-value" id="pet-count-pendiente" style="color:var(--yellow)">–</div>
+      <div class="stat-delta" style="color:var(--yellow)">🕐 Por revisar</div>
+      <div class="stat-icon-bg">🕐</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;border-left:3px solid var(--green)" onclick="filterPeticiones('aceptada',document.getElementById('petFiltAcep'))">
+      <div class="stat-label">Aceptadas</div>
+      <div class="stat-value" id="pet-count-aceptada" style="color:var(--green)">–</div>
+      <div class="stat-delta" style="color:var(--green)">✅ Como tareas activas</div>
+      <div class="stat-icon-bg">✅</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer;border-left:3px solid var(--red)" onclick="filterPeticiones('denegada',document.getElementById('petFiltDen'))">
+      <div class="stat-label">Denegadas</div>
+      <div class="stat-value" id="pet-count-denegada" style="color:var(--red)">–</div>
+      <div class="stat-icon-bg">❌</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+    <button id="petFiltTodas" class="pet-filter-btn tab-btn" data-filter="todas" onclick="filterPeticiones('todas',this)"
+      style="padding:7px 16px;font-size:12px">Todas</button>
+    <button id="petFiltPend" class="pet-filter-btn tab-btn active" data-filter="pendiente" onclick="filterPeticiones('pendiente',this)"
+      style="padding:7px 16px;font-size:12px">🕐 Pendientes</button>
+    <button id="petFiltAcep" class="pet-filter-btn tab-btn" data-filter="aceptada" onclick="filterPeticiones('aceptada',this)"
+      style="padding:7px 16px;font-size:12px">✅ Aceptadas</button>
+    <button id="petFiltDen"  class="pet-filter-btn tab-btn" data-filter="denegada" onclick="filterPeticiones('denegada',this)"
+      style="padding:7px 16px;font-size:12px">❌ Denegadas</button>
+  </div>
+
+  <div id="peticiones-list">
+    <div style="text-align:center;padding:60px 20px;color:var(--text-m)">
+      <div style="font-size:32px;margin-bottom:12px;opacity:0.4">📋</div>
+      <div style="font-size:14px;font-weight:500;color:var(--deep)">Cargando peticiones...</div>
+    </div>
+  </div>
+</section>

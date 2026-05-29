@@ -1,0 +1,176 @@
+<!--
+  PÁGINA: Detalle de Matriz
+  Archivo: pages/detalle-matriz.html
+  ID de sección: page-detalle-matriz
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-detalle-matriz">
+  <div class="detail-header">
+    <button class="back-btn" onclick="navigate('matrices',null)">← Volver</button>
+    <div class="detail-matrix-icon" id="detailIcon">⬡</div>
+    <div>
+      <div class="page-title" id="detailTitle">Nombre Matriz</div>
+      <div class="page-subtitle" id="detailSubtitle">Tipo · Área</div>
+    </div>
+    <div class="page-actions" style="margin-left:auto">
+      <button class="btn btn-ghost btn-sm" onclick="editCurrentMatrix()">✎ Editar</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteCurrentMatrix()">⊘ Eliminar</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'tab-info')">ℹ Información</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-objetivos')">◎ Objetivos</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-tareas')">☑ Tareas</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-estado')">⊙ Estado</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-gestion')">✎ Gestión</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-diagramas')">⬡ Diagramas</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-historial')">⊙ Historial</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-comentarios-admin')" id="tabBtnComentariosAdmin">
+      💬 Comentarios
+      <span id="comentariosAdminBadge"
+        style="display:none;background:var(--red);color:#fff;font-size:9px;font-weight:700;
+               padding:1px 6px;border-radius:10px;margin-left:4px;vertical-align:middle">0</span>
+    </button>
+  </div>
+
+  <!-- TAB: INFORMACIÓN -->
+  <div class="tab-content active" id="tab-info">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Información General</div></div>
+        <div id="detailInfo"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Indicadores</div></div>
+        <div id="detailIndicators"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: OBJETIVOS -->
+  <div class="tab-content" id="tab-objetivos">
+    <div class="page-header" style="margin-bottom:16px">
+      <div class="card-title">Objetivos de la Matriz</div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('modal-nuevo-objetivo')">+ Agregar Objetivo</button>
+    </div>
+    <div id="objetivos-list"></div>
+  </div>
+
+  <!-- TAB: TAREAS -->
+  <div class="tab-content" id="tab-tareas">
+    <div class="page-header" style="margin-bottom:16px">
+      <div class="card-title">Tareas de la Matriz</div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('modal-nueva-tarea')">+ Agregar Tarea</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tarea</th>
+            <th>Responsable</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Avance</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tareas-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB: ESTADO -->
+  <div class="tab-content" id="tab-estado">
+    <div class="grid-3" id="estado-cards"></div>
+  </div>
+
+  <!-- TAB: GESTIÓN OPERATIVA -->
+  <div class="tab-content" id="tab-gestion">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--deep)">Bitácora Operativa</div>
+      <button class="btn btn-primary btn-sm" onclick="saveGestion()">💾 Guardar</button>
+    </div>
+
+    <!-- Tipo de registro (mini chips) -->
+    <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+      <button class="gest-admin-tipo-btn active" data-tipo="general"   onclick="selectTipoAdmin(this,'gestionEditor')">📝 General</button>
+      <button class="gest-admin-tipo-btn"        data-tipo="monitoreo"  onclick="selectTipoAdmin(this,'gestionEditor')">📋 Monitoreo</button>
+      <button class="gest-admin-tipo-btn"        data-tipo="validacion" onclick="selectTipoAdmin(this,'gestionEditor')">✓ Validación</button>
+      <button class="gest-admin-tipo-btn"        data-tipo="incidente"  onclick="selectTipoAdmin(this,'gestionEditor')">⚠ Incidente</button>
+    </div>
+
+    <div class="op-editor">
+      <div class="op-editor-toolbar">
+        <button class="toolbar-btn" onclick="formatText('bold')"><b>B</b></button>
+        <button class="toolbar-btn" onclick="formatText('italic')"><i>I</i></button>
+        <button class="toolbar-btn" onclick="formatText('underline')"><u>U</u></button>
+        <div class="toolbar-divider"></div>
+        <button class="toolbar-btn" onclick="formatText('insertUnorderedList')">☰</button>
+        <button class="toolbar-btn" onclick="formatText('insertOrderedList')">①</button>
+        <div class="toolbar-divider"></div>
+        <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplate('monitoreo')">📋 Monitoreo</button>
+        <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplate('validacion')">✓ Validación</button>
+        <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplate('incidente')">⚠ Incidente</button>
+      </div>
+      <div class="op-editor-area"
+           contenteditable="true"
+           id="gestionEditor"
+           style="min-height:180px"
+           data-placeholder="Registre aquí sus actividades operativas: monitoreos, validaciones, controles, gestión diaria..."></div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:8px;gap:8px">
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('gestionEditor').innerText=''">Limpiar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveGestion()">💾 Guardar</button>
+    </div>
+
+    <div style="margin-top:22px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--deep);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px">
+        Registros guardados
+        <span id="gestion-registros-count" style="font-size:11px;font-family:'DM Mono',monospace;background:var(--deep-15);color:var(--deep);padding:2px 8px;border-radius:20px;font-weight:400"></span>
+      </div>
+      <div id="gestion-registros"></div>
+    </div>
+  </div>
+
+  <!-- TAB: DIAGRAMAS -->
+  <div class="tab-content" id="tab-diagramas">
+    <div class="page-header" style="margin-bottom:16px">
+      <div class="card-title">Diagramas de Flujo</div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('modal-nuevo-diagrama')">+ Subir Diagrama</button>
+    </div>
+    <div class="diag-gallery" id="diagramas-grid"></div>
+  </div>
+
+  <!-- TAB: HISTORIAL -->
+  <div class="tab-content" id="tab-historial">
+    <div class="timeline" id="historial-timeline"></div>
+  </div>
+
+  <!-- TAB: COMENTARIOS ADMIN -->
+  <div class="tab-content" id="tab-comentarios-admin">
+    <div class="admin-comments-header">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div class="card-title" style="display:flex;align-items:center;gap:10px">
+            🔒 Comentarios Privados de la Matriz
+            <span class="badge badge-red admin-comments-count" id="adminCommentsCount" style="display:none">0</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-m);margin-top:3px">
+            Solo visibles aquí · Los comentarios no pueden ser editados ni eliminados · Enviados desde el Panel Ejecutivo
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm admin-comment-filter-btn active" onclick="filterAdminComments('',this)">Todos</button>
+        <button class="btn btn-ghost btn-sm admin-comment-filter-btn" onclick="filterAdminComments('general',this)">💬 General</button>
+        <button class="btn btn-ghost btn-sm admin-comment-filter-btn" onclick="filterAdminComments('aprobado',this)">✅ Aprobado</button>
+        <button class="btn btn-ghost btn-sm admin-comment-filter-btn" onclick="filterAdminComments('observacion',this)">⚠️ Observación</button>
+        <button class="btn btn-ghost btn-sm admin-comment-filter-btn" onclick="filterAdminComments('urgente',this)">🔴 Urgente</button>
+      </div>
+    </div>
+    <div id="admin-comments-list"></div>
+  </div>
+</section>

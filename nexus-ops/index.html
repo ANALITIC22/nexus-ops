@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS OPS — Panel Administrador</title>
+
+  <!-- ── Fuentes ─────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- ── Librerías externas ───────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- ── Estilos propios ─────────────────────────────────────── -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/diagramas.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- ── SIDEBAR (componente) ────────────────────────────────── -->
+  <!-- Contenido en: components/sidebar.html -->
+  <aside class="sidebar" id="sidebar-root"></aside>
+
+  <!-- ── HEADER (componente) ─────────────────────────────────── -->
+  <!-- Contenido en: components/header.html -->
+  <header class="header" id="header-root"></header>
+
+  <!-- ── MAIN CONTENT ────────────────────────────────────────── -->
+  <main class="main-content" id="main-root">
+    <!-- Las páginas se cargan desde pages/ -->
+    <!-- page-dashboard      → pages/dashboard.html    -->
+    <!-- page-matrices       → pages/matrices.html     -->
+    <!-- page-detalle-matriz → pages/detalle-matriz.html -->
+    <!-- page-objetivos      → pages/objetivos.html    -->
+    <!-- page-tareas         → pages/tareas.html       -->
+    <!-- page-gestion        → pages/gestion.html      -->
+    <!-- page-diagramas      → pages/diagramas.html    -->
+    <!-- page-actividad      → pages/actividad.html    -->
+    <!-- page-reportes       → pages/reportes.html     -->
+    <!-- page-perfil         → pages/perfil.html       -->
+    <!-- page-config         → pages/config.html       -->
+    <!-- page-peticiones     → pages/peticiones.html   -->
+  </main>
+
+</div><!-- end .app-layout -->
+
+<!-- ── MODALES ─────────────────────────────────────────────────── -->
+<!-- Contenido en: modals/ (uno por modal) -->
+<!-- modal-denegar-peticion → modals/modal-denegar-peticion.html -->
+<!-- modal-nueva-matriz     → modals/modal-nueva-matriz.html     -->
+<!-- modal-nuevo-objetivo   → modals/modal-nuevo-objetivo.html   -->
+<!-- modal-nueva-tarea      → modals/modal-nueva-tarea.html      -->
+<!-- modal-nuevo-diagrama   → modals/modal-nuevo-diagrama.html   -->
+<!-- modal-nuevo-reporte    → modals/modal-nuevo-reporte.html    -->
+<!-- modal-editar-perfil    → modals/modal-editar-perfil.html    -->
+<div id="modals-root"></div>
+
+<!-- ── PANEL NOTIFICACIONES ────────────────────────────────────── -->
+<!-- Contenido en: components/notifications.html -->
+<div id="notif-root"></div>
+
+<!-- ── TOAST CONTAINER ─────────────────────────────────────────── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ── SCRIPTS ─────────────────────────────────────────────────── -->
+<!--
+  Orden de carga:
+  1. loader.js    → carga dinámica de todos los fragmentos HTML
+  2. script.js    → lógica principal de la aplicación (módulo)
+-->
+<script src="assets/loader.js"></script>
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

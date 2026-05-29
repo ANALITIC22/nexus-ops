@@ -1,0 +1,147 @@
+<!--
+  PÁGINA: Dashboard
+  Archivo: pages/dashboard.html
+  ID de sección: page-dashboard
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page active" id="page-dashboard">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Panel de Control</div>
+      <div class="page-subtitle">Resumen operativo general · Analista Corporativo</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary" onclick="navigate('matrices',null)">Ver Matrices</button>
+      <button class="btn btn-primary" onclick="openModal('modal-nueva-matriz')">+ Nueva Matriz</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Matrices Activas</div>
+      <div class="stat-value">5</div>
+      <div class="stat-delta">↑ 2 este mes</div>
+      <div class="stat-icon-bg">◈</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Tareas Pendientes</div>
+      <div class="stat-value">12</div>
+      <div class="stat-delta" style="color:var(--yellow)">⚠ 3 críticas</div>
+      <div class="stat-icon-bg">☑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Objetivos en Progreso</div>
+      <div class="stat-value">8</div>
+      <div class="stat-delta">↑ 75% avance prom.</div>
+      <div class="stat-icon-bg">◎</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="navigate('peticiones',null)">
+      <div class="stat-label">Peticiones Pendientes</div>
+      <div class="stat-value" id="dashPeticionesPendientes" style="color:var(--yellow)">–</div>
+      <div class="stat-delta" id="dashPeticionesDelta">Cargando...</div>
+      <div class="stat-icon-bg">📋</div>
+    </div>
+  </div>
+
+  <!-- Charts + Activity -->
+  <div class="grid-2" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Progreso por Matriz</div>
+        <span class="badge badge-gold">Mayo 2026</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="chartMatrices"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Estado de Tareas</div>
+      </div>
+      <div class="chart-container" style="height:160px">
+        <canvas id="chartTareas"></canvas>
+      </div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span class="progress-label">Completadas</span>
+            <span class="progress-pct">60%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:60%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span class="progress-label">En Progreso</span>
+            <span class="progress-pct">25%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill yellow" style="width:25%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span class="progress-label">Críticas</span>
+            <span class="progress-pct">15%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill red" style="width:15%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Matrices resumen + Timeline -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Matrices Recientes</div>
+        <button class="btn btn-ghost btn-sm" onclick="navigate('matrices',null)">Ver todas</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div id="dashMatricesList"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Actividad Reciente</div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-group">
+          <div class="timeline-date">Hoy — 25 Mayo</div>
+          <div class="timeline-item">
+            <div class="timeline-item-icon">✓</div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-title">Validación operativa VISIÓN completada</div>
+              <div class="timeline-item-meta">10:45 · Gestión Operativa</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-icon">⊙</div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-title">Monitoreo de usuarios ejecutado</div>
+              <div class="timeline-item-meta">09:20 · Monitoreo</div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-group">
+          <div class="timeline-date">Ayer — 24 Mayo</div>
+          <div class="timeline-item">
+            <div class="timeline-item-icon">▦</div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-title">Reporte mensual SAP generado</div>
+              <div class="timeline-item-meta">16:30 · Reportes</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-icon">⚠</div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-title">Incidente Mesa de Ayuda gestionado</div>
+              <div class="timeline-item-meta">11:15 · Mesa de Ayuda</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

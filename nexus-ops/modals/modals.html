@@ -1,0 +1,398 @@
+<!--
+  ============================================================
+  MODALES — NEXUS OPS Admin Panel
+  Archivo: modals/modals.html
+  Inyectado en: #modals-root (index.html)
+  ============================================================
+-->
+
+
+<!-- ── Modal: Denegar Petición ──────────────────────────────── -->
+<!-- modals/modal-denegar-peticion.html -->
+<div class="modal-overlay" id="modal-denegar-peticion">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <div class="modal-title">❌ Denegar Petición</div>
+      <button class="modal-close" onclick="cerrarModalDenegar()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:rgba(139,46,46,0.08);border:1px solid rgba(139,46,46,0.2);border-radius:var(--radius-s);
+        padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--red);line-height:1.5">
+        ⚠ Al denegar, el panel ejecutivo verá el motivo indicado. La petición quedará archivada.
+      </div>
+      <div class="form-group">
+        <label class="form-label">Motivo de denegación <span style="color:var(--text-l)">(opcional)</span></label>
+        <textarea class="form-control" id="motivoDenegacion" style="min-height:90px;resize:none"
+          placeholder="Explique brevemente por qué se deniega esta solicitud..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="cerrarModalDenegar()">Cancelar</button>
+      <button class="btn" id="btnConfirmarDenegar" onclick="confirmarDenegacion()"
+        style="background:var(--red);color:#fff;border:none">Confirmar Denegación</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Modal: Nueva Matriz ──────────────────────────────────── -->
+<!-- modals/modal-nueva-matriz.html -->
+<div class="modal-overlay" id="modal-nueva-matriz">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="matrizModalTitle">Nueva Matriz Operativa</div>
+      <button class="modal-close" onclick="closeModal('modal-nueva-matriz')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editingMatrizId">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre *</label>
+          <input class="form-control" id="mNombre" placeholder="Ej: VISIÓN, SAP, Mesa de Ayuda...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo *</label>
+          <select class="form-control" id="mTipo">
+            <option>Aplicativo</option>
+            <option>Operación</option>
+            <option>Plataforma</option>
+            <option>Sistema</option>
+            <option>Proceso</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Área</label>
+          <input class="form-control" id="mArea" placeholder="Tecnología, Operaciones...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Responsable</label>
+          <input class="form-control" id="mResponsable" placeholder="Nombre del responsable">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" id="mDesc" placeholder="Descripción del aplicativo / operación / proceso..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Criticidad</label>
+          <select class="form-control" id="mCriticidad">
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estado General</label>
+          <select class="form-control" id="mEstado">
+            <option>Al día</option>
+            <option>Pendiente</option>
+            <option>Crítico</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ícono (emoji)</label>
+        <input class="form-control" id="mIcono" placeholder="⬡" style="font-size:20px;text-align:center">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-nueva-matriz')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveMatriz()">Guardar Matriz</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Modal: Nuevo Objetivo ────────────────────────────────── -->
+<!-- modals/modal-nuevo-objetivo.html -->
+<div class="modal-overlay" id="modal-nuevo-objetivo">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Nuevo Objetivo</div>
+      <button class="modal-close" onclick="closeModal('modal-nuevo-objetivo')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Título *</label>
+        <input class="form-control" id="oTitulo" placeholder="Título del objetivo...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" id="oDesc" placeholder="Describe el objetivo..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Prioridad</label>
+          <select class="form-control" id="oPrioridad">
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estado</label>
+          <select class="form-control" id="oEstado">
+            <option>Pendiente</option>
+            <option>En progreso</option>
+            <option>Completado</option>
+            <option>Bloqueado</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Avance %</label>
+          <input class="form-control" type="number" id="oAvance" min="0" max="100" value="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha Límite</label>
+          <input class="form-control" type="date" id="oFecha">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Observaciones</label>
+        <textarea class="form-control" id="oObs" placeholder="Notas adicionales..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-nuevo-objetivo')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveObjetivo()">Guardar Objetivo</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Modal: Nueva Tarea ───────────────────────────────────── -->
+<!-- modals/modal-nueva-tarea.html -->
+<div class="modal-overlay" id="modal-nueva-tarea">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Nueva Tarea</div>
+      <button class="modal-close" onclick="closeModal('modal-nueva-tarea')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Título *</label>
+        <input class="form-control" id="tTitulo" placeholder="Título de la tarea...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" id="tDesc" placeholder="Descripción detallada..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Responsable</label>
+          <input class="form-control" id="tResponsable" placeholder="Nombre...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Prioridad</label>
+          <select class="form-control" id="tPrioridad">
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Estado</label>
+          <select class="form-control" id="tEstado">
+            <option>Pendiente</option>
+            <option>En progreso</option>
+            <option>Al día</option>
+            <option>Completado</option>
+            <option>Crítico</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Avance %</label>
+          <input class="form-control" type="number" id="tAvance" min="0" max="100" value="0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Fecha</label>
+          <input class="form-control" type="date" id="tFecha">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Matriz</label>
+          <select class="form-control" id="tMatriz">
+            <option value="">General</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Observaciones</label>
+        <textarea class="form-control" id="tObs" placeholder="Comentarios adicionales..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-nueva-tarea')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveTarea()">Guardar Tarea</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Modal: Nuevo Diagrama ────────────────────────────────── -->
+<!-- modals/modal-nuevo-diagrama.html -->
+<div class="modal-overlay" id="modal-nuevo-diagrama">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Subir Diagrama</div>
+      <button class="modal-close" onclick="closeModal('modal-nuevo-diagrama')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Nombre *</label>
+        <input class="form-control" id="dNombre" placeholder="Nombre del diagrama...">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Categoría</label>
+          <select class="form-control" id="dCategoria">
+            <option>Proceso</option>
+            <option>Flujo de datos</option>
+            <option>Arquitectura</option>
+            <option>Organigrama</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Versión</label>
+          <input class="form-control" id="dVersion" placeholder="v1.0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" id="dDesc" placeholder="Descripción del diagrama..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">🔗 Link de Google Drive</label>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface-2,#1a1a2e);border:1.5px solid var(--border,#2a2a4a);border-radius:10px;padding:10px 14px;transition:border-color .2s" id="drive-link-box">
+          <span style="font-size:18px;flex-shrink:0">📁</span>
+          <input class="form-control" id="dDriveLink"
+            placeholder="https://drive.google.com/file/d/..."
+            style="border:none;background:transparent;flex:1;padding:0;outline:none;color:inherit"
+            oninput="validateDriveLink(this)">
+        </div>
+        <div id="dDriveLinkStatus" style="font-size:11px;margin-top:5px;padding-left:4px;color:var(--text-m)">
+          Pega el enlace de Google Drive del diagrama
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Emoji representativo</label>
+        <input class="form-control" id="dEmoji" placeholder="📊" style="text-align:center;font-size:20px">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-nuevo-diagrama')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveDiagrama()">💾 Guardar Diagrama</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Modal: Nuevo Reporte ─────────────────────────────────── -->
+<!-- modals/modal-nuevo-reporte.html -->
+<div class="modal-overlay" id="modal-nuevo-reporte">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title">Nuevo Reporte</div>
+      <button class="modal-close" onclick="closeModal('modal-nuevo-reporte')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Título *</label>
+          <input class="form-control" id="rTitulo" placeholder="Título del reporte...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo</label>
+          <select class="form-control" id="rTipo">
+            <option>Operativo</option>
+            <option>Ejecutivo</option>
+            <option>Técnico</option>
+            <option>Incidente</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Matriz Relacionada</label>
+          <select class="form-control" id="rMatriz">
+            <option value="">General</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estado</label>
+          <select class="form-control" id="rEstado">
+            <option>Borrador</option>
+            <option>Pendiente</option>
+            <option>Aprobado</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contenido del Reporte</label>
+        <textarea class="form-control" id="rContenido" style="min-height:200px" placeholder="Escriba el contenido del reporte..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-nuevo-reporte')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveReporte()">Guardar Reporte</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Modal: Editar Perfil ─────────────────────────────────── -->
+<!-- modals/modal-editar-perfil.html -->
+<div class="modal-overlay" id="modal-editar-perfil">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Editar Perfil Profesional</div>
+      <button class="modal-close" onclick="closeModal('modal-editar-perfil')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre Completo</label>
+          <input class="form-control" id="pNombre" value="Analista Corporativo">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cargo</label>
+          <input class="form-control" id="pCargo" value="Analista Senior">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Área</label>
+          <input class="form-control" id="pArea" value="Tecnología e Innovación">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Correo</label>
+          <input class="form-control" id="pEmail" value="analista@empresa.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Teléfono</label>
+        <input class="form-control" id="pPhone" value="+57 300 000 0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción Profesional</label>
+        <textarea class="form-control" id="pDesc" style="min-height:100px">Analista corporativo con experiencia en gestión operativa, administración de aplicativos y seguimiento de procesos.</textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Habilidades (separadas por coma)</label>
+        <input class="form-control" id="pSkills" value="Análisis de Datos,Gestión Operativa,SAP,Documentación Técnica">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-editar-perfil')">Cancelar</button>
+      <button class="btn btn-primary" onclick="savePerfil()">Guardar Perfil</button>
+    </div>
+  </div>
+</div>

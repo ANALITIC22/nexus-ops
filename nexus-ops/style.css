@@ -1294,6 +1294,30 @@ select.form-control {
   pointer-events: none;
 }
 
+/* Chips de tipo de registro */
+.gest-admin-tipo-btn {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-m);
+  cursor: pointer;
+  transition: all .15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.gest-admin-tipo-btn:hover {
+  background: var(--deep-15);
+  color: var(--deep);
+  border-color: var(--deep-50);
+}
+.gest-admin-tipo-btn.active {
+  background: var(--deep);
+  color: var(--ivory, #FFF4E2);
+  border-color: var(--deep);
+}
+
 /* ============================================================
    DIAGRAM CARD
    ============================================================ */

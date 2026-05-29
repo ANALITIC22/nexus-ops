@@ -1,0 +1,474 @@
+/* ============================================================
+   NEXUS OPS — diagramas.css
+   Estilos para galería de diagramas, visor lightbox y upload
+   ============================================================ */
+
+/* ── Galería principal ──────────────────────────────────────── */
+.diag-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 4px 2px;
+}
+
+/* ── Tarjeta de diagrama ───────────────────────────────────── */
+.diag-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-g);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.diag-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(71, 40, 37, 0.12);
+  border-color: var(--gold);
+}
+
+/* Thumbnail / preview de imagen */
+.diag-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.diag-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.diag-card:hover .diag-thumb img {
+  transform: scale(1.04);
+}
+
+/* Placeholder cuando no hay imagen */
+.diag-thumb-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-l);
+}
+
+.diag-thumb-placeholder .diag-emoji {
+  font-size: 38px;
+  opacity: 0.65;
+}
+
+.diag-thumb-placeholder span {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Overlay "Ver" al hover */
+.diag-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(71, 40, 37, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(2px);
+}
+
+.diag-card:hover .diag-overlay {
+  opacity: 1;
+}
+
+.diag-overlay-btn {
+  background: var(--gold);
+  color: var(--deep);
+  border: none;
+  border-radius: var(--radius-s);
+  padding: 8px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  pointer-events: none;   /* el click lo captura la card padre */
+}
+
+/* Badge de categoría sobre la imagen */
+.diag-cat-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(71, 40, 37, 0.72);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+/* Cuerpo de la tarjeta */
+.diag-body {
+  padding: 14px 16px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.diag-title {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--deep);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.diag-meta {
+  font-size: 11px;
+  color: var(--text-m);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.diag-desc {
+  font-size: 11.5px;
+  color: var(--text-b);
+  line-height: 1.45;
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Acciones de la tarjeta */
+.diag-actions {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: rgba(211,171,128,0.05);
+}
+
+.diag-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--border);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-b);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.diag-btn:hover {
+  background: var(--deep-15);
+  border-color: var(--gold);
+  color: var(--deep);
+}
+
+.diag-btn.danger {
+  color: var(--red);
+  border-color: rgba(139,46,46,0.25);
+}
+
+.diag-btn.danger:hover {
+  background: var(--red-bg);
+  border-color: var(--red);
+}
+
+/* ── Barra de progreso de upload ───────────────────────────── */
+.diag-upload-progress {
+  display: none;
+  margin-top: 12px;
+}
+
+.diag-upload-progress.visible {
+  display: block;
+}
+
+.diag-upload-bar-wrap {
+  height: 6px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.diag-upload-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--warm));
+  border-radius: 10px;
+  transition: width 0.2s ease;
+}
+
+.diag-upload-label {
+  font-size: 11px;
+  color: var(--text-m);
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Preview de imagen en modal antes de subir */
+.diag-preview-wrap {
+  margin-top: 10px;
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  border: 1px solid var(--border-g);
+  display: none;
+  max-height: 180px;
+}
+
+.diag-preview-wrap.visible {
+  display: block;
+}
+
+.diag-preview-wrap img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  background: var(--ivory);
+  display: block;
+}
+
+/* Drop-zone mejorada */
+.diag-drop-zone {
+  border: 2px dashed var(--border-g);
+  border-radius: var(--radius-m);
+  padding: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: transparent;
+}
+
+.diag-drop-zone:hover,
+.diag-drop-zone.highlight {
+  border-color: var(--gold);
+  background: rgba(211,171,128,0.07);
+}
+
+.diag-drop-zone .dz-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.diag-drop-zone .dz-title {
+  font-size: 13px;
+  color: var(--text-b);
+  font-weight: 500;
+}
+
+.diag-drop-zone .dz-sub {
+  font-size: 11px;
+  color: var(--text-l);
+  margin-top: 3px;
+}
+
+.diag-drop-zone .dz-filename {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ── Lightbox / Visor ──────────────────────────────────────── */
+#diag-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(20, 10, 8, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+#diag-lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.diag-lb-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(20,10,8,0.7) 0%, transparent 100%);
+}
+
+.diag-lb-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.diag-lb-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 2px;
+}
+
+.diag-lb-close {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.diag-lb-close:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+.diag-lb-body {
+  max-width: min(90vw, 1100px);
+  max-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diag-lb-body img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: var(--radius-s);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* PDF embed en lightbox */
+.diag-lb-body iframe {
+  width: min(90vw, 1100px);
+  height: 78vh;
+  border: none;
+  border-radius: var(--radius-s);
+  background: #fff;
+}
+
+/* Placeholder cuando no hay archivo */
+.diag-lb-no-file {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+}
+
+.diag-lb-no-file .no-file-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.diag-lb-no-file p {
+  font-size: 14px;
+}
+
+.diag-lb-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  background: linear-gradient(0deg, rgba(20,10,8,0.7) 0%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.diag-lb-footer-btn {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  padding: 7px 18px;
+  border-radius: var(--radius-s);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.diag-lb-footer-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ── Estado vacío ──────────────────────────────────────────── */
+.diag-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.diag-empty-icon {
+  font-size: 44px;
+  opacity: 0.3;
+  margin-bottom: 14px;
+}
+
+.diag-empty-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--deep);
+  margin-bottom: 6px;
+}
+
+.diag-empty-sub {
+  font-size: 12.5px;
+  color: var(--text-m);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .diag-gallery {
+    grid-template-columns: 1fr;
+  }
+  .diag-lb-body {
+    max-width: 96vw;
+  }
+}

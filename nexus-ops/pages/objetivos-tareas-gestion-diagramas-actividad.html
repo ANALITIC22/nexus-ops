@@ -1,0 +1,242 @@
+<!--
+  PÁGINA: Objetivos (global)
+  Archivo: pages/objetivos.html
+  ID de sección: page-objetivos
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-objetivos">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Objetivos</div>
+      <div class="page-subtitle">Gestión global de objetivos corporativos</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-primary" onclick="openModal('modal-nuevo-objetivo')">+ Nuevo Objetivo</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" class="filter-input" placeholder="🔍  Buscar objetivos...">
+    <select class="filter-select">
+      <option>Todos los estados</option>
+      <option>Pendiente</option>
+      <option>En progreso</option>
+      <option>Completado</option>
+      <option>Bloqueado</option>
+    </select>
+    <select class="filter-select">
+      <option>Todas las prioridades</option>
+      <option>Alta</option>
+      <option>Media</option>
+      <option>Baja</option>
+    </select>
+  </div>
+
+  <div id="global-objetivos-list"></div>
+</section>
+
+
+<!--
+  PÁGINA: Tareas (global)
+  Archivo: pages/tareas.html
+  ID de sección: page-tareas
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-tareas">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Tareas</div>
+      <div class="page-subtitle">Seguimiento y gestión de tareas operativas</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-primary" onclick="openModal('modal-nueva-tarea')">+ Nueva Tarea</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" class="filter-input" placeholder="🔍  Buscar tareas..." oninput="filterTareasGlobal(this.value)">
+    <select class="filter-select" onchange="filterTareasGlobal(this.value)">
+      <option value="">Todos los estados</option>
+      <option>Pendiente</option>
+      <option>En progreso</option>
+      <option>Al día</option>
+      <option>Completado</option>
+      <option>Crítico</option>
+    </select>
+    <select class="filter-select">
+      <option>Todas las prioridades</option>
+      <option>Alta</option>
+      <option>Media</option>
+      <option>Baja</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Tarea</th>
+          <th>Matriz</th>
+          <th>Responsable</th>
+          <th>Prioridad</th>
+          <th>Estado</th>
+          <th>Avance</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="global-tareas-tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+
+<!--
+  PÁGINA: Gestión Operativa (global)
+  Archivo: pages/gestion.html
+  ID de sección: page-gestion
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-gestion">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Gestión Operativa</div>
+      <div class="page-subtitle">Bitácora diaria · Documentación de procesos</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-primary" onclick="saveGestionGlobal()">💾 Guardar Registro</button>
+    </div>
+  </div>
+
+  <!-- Stats rápidas -->
+  <div id="gestion-admin-stats" style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap"></div>
+
+  <div class="grid-2">
+    <!-- Panel izquierdo: editor -->
+    <div>
+      <div class="card" style="margin-bottom:18px">
+        <div class="card-header">
+          <div class="card-title">Nuevo Registro</div>
+          <select class="filter-select" style="font-size:12px" id="gestion-matriz-select">
+            <option>Seleccionar Matriz</option>
+          </select>
+        </div>
+
+        <!-- Tipo de registro -->
+        <div style="padding:12px 16px 0;display:flex;gap:6px;flex-wrap:wrap">
+          <button class="gest-admin-tipo-btn active" data-tipo="general"  onclick="selectTipoAdmin(this)">📝 General</button>
+          <button class="gest-admin-tipo-btn"        data-tipo="monitoreo" onclick="selectTipoAdmin(this)">📋 Monitoreo</button>
+          <button class="gest-admin-tipo-btn"        data-tipo="validacion" onclick="selectTipoAdmin(this)">✓ Validación</button>
+          <button class="gest-admin-tipo-btn"        data-tipo="incidente"  onclick="selectTipoAdmin(this)">⚠ Incidente</button>
+        </div>
+
+        <div class="op-editor" style="margin:12px 0 0;border-radius:0;border-left:none;border-right:none;border-bottom:none">
+          <div class="op-editor-toolbar">
+            <button class="toolbar-btn" onclick="formatTextG('bold')"><b>B</b></button>
+            <button class="toolbar-btn" onclick="formatTextG('italic')"><i>I</i></button>
+            <button class="toolbar-btn" onclick="formatTextG('underline')"><u>U</u></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-btn" onclick="formatTextG('insertUnorderedList')">☰</button>
+            <button class="toolbar-btn" onclick="formatTextG('insertOrderedList')">①</button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplateG('monitoreo')">📋 Plantilla Monitoreo</button>
+            <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplateG('validacion')">✓ Plantilla Validación</button>
+            <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplateG('incidente')">⚠ Plantilla Incidente</button>
+          </div>
+          <div class="op-editor-area"
+               contenteditable="true"
+               id="gestionGlobalEditor"
+               style="min-height:220px"
+               data-placeholder="Escriba su registro operativo aquí..."></div>
+        </div>
+        <div style="padding:12px 16px;display:flex;justify-content:flex-end;border-top:1px solid var(--border)">
+          <button class="btn btn-ghost btn-sm" onclick="clearGestionEditor()" style="margin-right:8px">Limpiar</button>
+          <button class="btn btn-primary btn-sm" onclick="saveGestionGlobal()">💾 Guardar Registro</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel derecho: historial -->
+    <div class="card" style="display:flex;flex-direction:column">
+      <div class="card-header" style="flex-shrink:0">
+        <div class="card-title">Historial de Registros</div>
+        <div style="display:flex;gap:6px">
+          <select class="filter-select" style="font-size:11px" id="gestion-filter-tipo" onchange="renderGestionGlobal()">
+            <option value="all">Todos los tipos</option>
+            <option value="incidente">⚠ Incidentes</option>
+            <option value="monitoreo">📋 Monitoreo</option>
+            <option value="validacion">✓ Validación</option>
+          </select>
+        </div>
+      </div>
+      <div id="gestion-global-registros" style="flex:1;overflow-y:auto;max-height:540px;padding:4px 0"></div>
+    </div>
+  </div>
+</section>
+
+
+<!--
+  PÁGINA: Diagramas (global)
+  Archivo: pages/diagramas.html
+  ID de sección: page-diagramas
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-diagramas">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Diagramas de Flujo</div>
+      <div class="page-subtitle">Documentación visual de procesos operativos</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-primary" onclick="openModal('modal-nuevo-diagrama')">+ Subir Diagrama</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" class="filter-input" placeholder="🔍  Buscar diagramas...">
+    <select class="filter-select">
+      <option>Todas las categorías</option>
+      <option>Proceso</option>
+      <option>Flujo de datos</option>
+      <option>Arquitectura</option>
+      <option>Organigrama</option>
+    </select>
+  </div>
+
+  <div class="diag-gallery" id="global-diagramas-grid"></div>
+</section>
+
+
+<!--
+  PÁGINA: Actividad
+  Archivo: pages/actividad.html
+  ID de sección: page-actividad
+  Inyectado en: #main-root (index.html)
+-->
+
+<section class="page" id="page-actividad">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Historial de Actividad</div>
+      <div class="page-subtitle">Trazabilidad operativa completa</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="timeline" id="actividad-timeline"></div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Resumen Semanal</div></div>
+        <div class="chart-container">
+          <canvas id="chartActividad"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

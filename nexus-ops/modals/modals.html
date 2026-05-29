@@ -270,6 +270,7 @@
         <textarea class="form-control" id="dDesc" placeholder="Descripción del diagrama..."></textarea>
       </div>
       <div class="form-group">
+<<<<<<< HEAD
         <label class="form-label">🔗 Link de Google Drive</label>
         <div style="display:flex;align-items:center;gap:8px;background:var(--surface-2,#1a1a2e);border:1.5px solid var(--border,#2a2a4a);border-radius:10px;padding:10px 14px;transition:border-color .2s" id="drive-link-box">
           <span style="font-size:18px;flex-shrink:0">📁</span>
@@ -281,6 +282,19 @@
         <div id="dDriveLinkStatus" style="font-size:11px;margin-top:5px;padding-left:4px;color:var(--text-m)">
           Pega el enlace de Google Drive del diagrama
         </div>
+=======
+        <label class="form-label">Archivo / Imagen</label>
+        <div style="border:2px dashed var(--border-g);border-radius:var(--radius-m);padding:30px;text-align:center;cursor:pointer;"
+             onclick="document.getElementById('dFile').click()"
+             ondragover="event.preventDefault()"
+             ondrop="handleDrop(event)">
+          <div style="font-size:28px;margin-bottom:8px">📎</div>
+          <div style="font-size:13px;color:var(--text-m)">Haga clic o arrastre un archivo aquí</div>
+          <div style="font-size:11px;color:var(--text-l);margin-top:4px">PNG, JPG, PDF, SVG · Máx. 10MB</div>
+          <div id="dFileName" style="margin-top:8px;font-size:12px;color:var(--gold);font-weight:500"></div>
+        </div>
+        <input type="file" id="dFile" style="display:none" accept="image/*,.pdf,.svg" onchange="showFileName(this)">
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
       </div>
       <div class="form-group">
         <label class="form-label">Emoji representativo</label>
@@ -289,7 +303,11 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('modal-nuevo-diagrama')">Cancelar</button>
+<<<<<<< HEAD
       <button class="btn btn-primary" onclick="saveDiagrama()">💾 Guardar Diagrama</button>
+=======
+      <button class="btn btn-primary" onclick="saveDiagrama()">Guardar Diagrama</button>
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     </div>
   </div>
 </div>

@@ -2722,6 +2722,7 @@ function renderDetailDiagramas(m){
   const diags = S.diagramas.filter(d=>String(d.matrizId)===String(m.id));
   const el = document.getElementById('detailDiagramasList');
   if(!diags.length){
+<<<<<<< HEAD
     el.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">⬡</div><div class="empty-title">Sin diagramas</div><div class="empty-text">El administrador aún no ha asignado diagramas para esta matriz</div></div>`;
     return;
   }
@@ -2742,6 +2743,33 @@ function renderDetailDiagramas(m){
         </div>
         ${hasLink?`<div style="font-size:9px;background:var(--gold-10,rgba(212,175,55,.12));color:var(--gold,#d4af37);border:1px solid var(--border-g,rgba(212,175,55,.2));border-radius:4px;padding:2px 8px;margin-top:2px">🔗 Drive</div>`:''}
       </div>`;
+=======
+    el.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">⬡</div><div class="empty-title">Sin diagramas</div><div class="empty-text">El administrador aún no ha subido diagramas para esta matriz</div></div>`;
+    return;
+  }
+  el.innerHTML = diags.map(d=>{
+    let previewHtml;
+    if(d.imageUrl){
+      if(d.fileType==='pdf'){
+        previewHtml = `<div class="diagram-preview" style="cursor:pointer;text-decoration:none" onclick="window.open('${d.imageUrl}','_blank')">
+          <div style="text-align:center">
+            <div style="font-size:42px">📄</div>
+            <div style="font-size:10px;color:var(--text-m);margin-top:4px;font-family:'DM Mono',monospace">PDF — Ver</div>
+          </div>
+        </div>`;
+      } else {
+        previewHtml = `<div class="diagram-preview" style="padding:0;cursor:pointer;overflow:hidden" onclick="window.open('${d.imageUrl}','_blank')">
+          <img src="${d.imageUrl}" alt="${d.nombre||'Diagrama'}"
+            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s"
+            onmouseover="this.style.transform='scale(1.04)'"
+            onmouseout="this.style.transform='scale(1)'"
+            onerror="this.parentElement.innerHTML='<div style=font-size:48px;opacity:.5>${d.emoji||'📊'}</div>'">
+        </div>`;
+      }
+    } else {
+      previewHtml = `<div class="diagram-preview">${d.emoji||'📊'}</div>`;
+    }
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     return `
     <div class="diagram-card">
       ${previewHtml}
@@ -2751,10 +2779,16 @@ function renderDetailDiagramas(m){
         <div style="margin-top:6px;font-size:11px;color:var(--text-m)">${d.descripcion||d.desc||''}</div>
         <div style="margin-top:8px;display:flex;align-items:center;justify-content:space-between">
           <div style="font-size:10px;color:var(--text-l);font-family:'DM Mono',monospace">${fmtDate(d.fecha)}</div>
+<<<<<<< HEAD
           ${hasLink?`<a href="${linkUrl}" target="_blank" rel="noopener noreferrer"
             style="font-size:10px;color:var(--gold);font-weight:600;text-decoration:none;border:1px solid var(--border-g);padding:2px 8px;border-radius:4px;transition:all var(--trans)"
             onmouseover="this.style.background='var(--gold-10)'"
             onmouseout="this.style.background='transparent'">Abrir ↗</a>`:''}
+=======
+          ${d.imageUrl?`<a href="${d.imageUrl}" target="_blank" style="font-size:10px;color:var(--gold);font-weight:600;text-decoration:none;border:1px solid var(--border-g);padding:2px 8px;border-radius:4px;transition:all var(--trans)"
+            onmouseover="this.style.background='var(--gold-10)'"
+            onmouseout="this.style.background='transparent'">Ver ↗</a>`:''}
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
         </div>
       </div>
     </div>`;

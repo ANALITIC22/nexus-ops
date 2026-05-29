@@ -1,11 +1,17 @@
 // ============================================================
+<<<<<<< HEAD
 // NEXUS OPS — gestion.js  (v2 — diseño mejorado)
+=======
+// NEXUS OPS — gestion.js
+// Gestión Operativa / Bitácora
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 // ============================================================
 
 import { db, collection, addDoc } from './firebase.js';
 import { AppState } from './state.js';
 import { showToast } from './helpers.js';
 
+<<<<<<< HEAD
 // ── Detectar tipo a partir del texto ─────────────────────────
 function _detectTipo(txt) {
   const t = (txt || '').toLowerCase();
@@ -55,10 +61,13 @@ function _buildAdminCard(g, showMatrix = true) {
 }
 
 // ── Render bitácora global (página admin Gestión) ─────────────
+=======
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 export function renderGestionGlobal() {
   const container = document.getElementById('gestion-global-registros');
   if (!container) return;
 
+<<<<<<< HEAD
   // Stats
   const statsEl = document.getElementById('gestion-admin-stats');
   if (statsEl && AppState.gestionGlobal.length) {
@@ -108,10 +117,29 @@ export function renderGestionGlobal() {
 }
 
 // ── Render bitácora en tab de detalle-matriz ──────────────────
+=======
+  if (!AppState.gestionGlobal.length) {
+    container.innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-m);font-size:12.5px">Bitácora vacía.</div>`;
+    return;
+  }
+
+  container.innerHTML = AppState.gestionGlobal.map(g => `
+    <div style="padding:12px;background:var(--ivory);border-left:3px solid var(--gold);
+      border-radius:var(--radius-s);margin-bottom:10px;position:relative">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-l);margin-bottom:4px">
+        <span>${AppState.matrices.find(m => String(m.id) === String(g.matrizId))?.nombre || g.matrizId || 'General'}</span>
+        <span style="font-family:'DM Mono'">${g.fecha}</span>
+      </div>
+      <div style="font-size:13px;color:var(--deep);white-space:pre-wrap">${g.texto || g.titulo || ''}</div>
+    </div>`).join('');
+}
+
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 export function renderGestionRegistros() {
   const container = document.getElementById('gestion-registros');
   if (!container) return;
 
+<<<<<<< HEAD
   const list = AppState.gestionGlobal.filter(
     g => String(g.matrizId) === String(AppState.currentMatrizId)
   );
@@ -149,19 +177,48 @@ export async function saveGestion() {
     fecha:    new Date().toLocaleString('es-CO'),
     texto:    textoFinal,
     tipo:     tipoSel === 'general' ? 'matriz' : tipoSel,
+=======
+  const list = AppState.gestionGlobal.filter(g => String(g.matrizId) === String(AppState.currentMatrizId));
+  if (!list.length) {
+    container.innerHTML = `<p style="font-size:12px;color:var(--text-m)">No hay entradas en la bitácora.</p>`;
+    return;
+  }
+
+  container.innerHTML = list.map(g => `
+    <div style="padding:10px;background:var(--gold-10);border-radius:var(--radius-s);margin-bottom:8px">
+      <div style="font-family:'DM Mono';font-size:10px;color:var(--text-l);margin-bottom:2px">${g.fecha}</div>
+      <div style="font-size:12.5px;color:var(--deep);line-height:1.5;white-space:pre-wrap">${g.texto || g.titulo || ''}</div>
+    </div>`).join('');
+}
+
+export async function saveGestion() {
+  const editorEl = document.getElementById('gestionEditor');
+  const txt = (editorEl ? editorEl.innerText : '').trim();
+  if (!txt) return;
+
+  const data = {
+    matrizId: AppState.currentMatrizId || "",
+    fecha:    new Date().toLocaleString('es-CO'),
+    texto:    txt,
+    tipo:     'matriz'
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   };
 
   try {
     await addDoc(collection(db, 'gestion'), data);
     if (editorEl) editorEl.innerText = '';
+<<<<<<< HEAD
     // Reset chips
     document.querySelectorAll('#tab-gestion .gest-admin-tipo-btn').forEach(b => b.classList.remove('active'));
     const defBtn = document.querySelector('#tab-gestion .gest-admin-tipo-btn[data-tipo="general"]');
     if (defBtn) defBtn.classList.add('active');
+=======
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     showToast('Bitácora guardada ✓', 'success');
   } catch (e) { showToast('Error: ' + e.message, 'error'); }
 }
 
+<<<<<<< HEAD
 // ── Guardar registro global ───────────────────────────────────
 export async function saveGestionGlobal() {
   const editorEl = document.getElementById('gestionGlobalEditor');
@@ -182,18 +239,36 @@ export async function saveGestionGlobal() {
     fecha:  new Date().toLocaleString('es-CO'),
     texto:  textoFinal,
     tipo:   tipoSel === 'general' ? 'global' : tipoSel,
+=======
+export async function saveGestionGlobal() {
+  const editorEl = document.getElementById('gestionGlobalEditor');
+  const txt = (editorEl ? editorEl.innerText : '').trim();
+  if (!txt) return;
+
+  const matSel  = document.getElementById('gestion-matriz-select');
+  const matrizId = matSel?.value || 'General';
+  const data = {
+    matrizId,
+    fecha: new Date().toLocaleString('es-CO'),
+    texto: txt,
+    tipo:  'global'
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   };
 
   try {
     await addDoc(collection(db, 'gestion'), data);
     if (editorEl) editorEl.innerText = '';
+<<<<<<< HEAD
     document.querySelectorAll('#page-gestion .gest-admin-tipo-btn').forEach(b => b.classList.remove('active'));
     const defBtn = document.querySelector('#page-gestion .gest-admin-tipo-btn[data-tipo="general"]');
     if (defBtn) defBtn.classList.add('active');
+=======
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     showToast('Registro global guardado ✓', 'success');
   } catch (e) { showToast('Error: ' + e.message, 'error'); }
 }
 
+<<<<<<< HEAD
 // ── Limpiar editor global ─────────────────────────────────────
 export function clearGestionEditor() {
   const e = document.getElementById('gestionGlobalEditor');
@@ -221,6 +296,9 @@ export function selectTipoAdmin(btn, editorId) {
 }
 
 // ── Editor de texto enriquecido ───────────────────────────────
+=======
+// ── Editor de texto enriquecido ──────────────────────────────
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 export function formatText(cmd) {
   const e = document.getElementById('gestionEditor');
   if (e) { e.focus(); document.execCommand(cmd, false, null); }
@@ -237,7 +315,11 @@ export function insertTemplate(tipo) {
   const templates = {
     incidente:  '[INCIDENTE]\n• Impacto: \n• Causa Raíz: \n• Solución: ',
     monitoreo:  '[MONITOREO]\n• Sistema: \n• Estado: \n• Observaciones: ',
+<<<<<<< HEAD
     validacion: '[VALIDACIÓN]\n• Proceso: \n• Resultado: \n• Observaciones: ',
+=======
+    validacion: '[VALIDACIÓN]\n• Proceso: \n• Resultado: \n• Observaciones: '
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   };
   e.focus();
   document.execCommand('insertText', false, templates[tipo] || templates.incidente);
@@ -249,7 +331,11 @@ export function insertTemplateG(tipo) {
   const templates = {
     monitoreo:  '[MONITOREO GLOBAL]\n• Sistema: \n• Estado: \n• Observaciones: ',
     validacion: '[VALIDACIÓN GLOBAL]\n• Proceso: \n• Resultado: \n• Observaciones: ',
+<<<<<<< HEAD
     incidente:  '[INCIDENTE GLOBAL]\n• Impacto: \n• Causa Raíz: \n• Solución: ',
+=======
+    incidente:  '[INCIDENTE GLOBAL]\n• Impacto: \n• Causa Raíz: \n• Solución: '
+>>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   };
   e.focus();
   document.execCommand('insertText', false, templates[tipo] || templates.monitoreo);

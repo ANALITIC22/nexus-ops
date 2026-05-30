@@ -1,0 +1,125 @@
+  <section class="exec-page" id="page-gm-matrices" style="display:none">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Mis Matrices</div>
+        <div class="page-subtitle">Crear, editar y gestionar matrices operativas</div>
+      </div>
+      <button class="btn-gerente" onclick="openGMModal('matriz','crear')">+ Nueva Matriz</button>
+    </div>
+    <div id="gmMatricesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px">
+      <div class="loading-state"><div class="loading-spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ GERENTE: MIS OBJETIVOS -->
+  <section class="exec-page" id="page-gm-objetivos" style="display:none">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Mis Objetivos</div>
+        <div class="page-subtitle">Gestionar objetivos estratégicos</div>
+      </div>
+      <button class="btn-gerente" onclick="openGMModal('objetivo','crear')">+ Nuevo Objetivo</button>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Título</th><th>Descripción</th><th>Prioridad</th>
+            <th>Fecha Límite</th><th>Observaciones</th><th>Acciones</th>
+          </tr></thead>
+          <tbody id="gmObjetivosTable"><tr><td colspan="6" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ GERENTE: MIS TAREAS -->
+  <section class="exec-page" id="page-gm-tareas" style="display:none">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Mis Tareas</div>
+        <div class="page-subtitle">Gestionar tareas dentro de las matrices</div>
+      </div>
+      <button class="btn-gerente" onclick="openGMModal('tarea','crear')">+ Nueva Tarea</button>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Título</th><th>Descripción</th><th>Responsable</th>
+            <th>Prioridad</th><th>Fecha Límite</th><th>Matriz</th><th>Observaciones</th><th>Acciones</th>
+          </tr></thead>
+          <tbody id="gmTareasTable"><tr><td colspan="8" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ GERENTE: DETALLE MATRIZ -->
+  <section class="exec-page" id="page-gm-detalle" style="display:none">
+    <div style="margin-bottom:18px">
+      <button class="btn-back" onclick="navTo('gm-matrices',null)">&#8592; Volver a Matrices</button>
+    </div>
+
+    <div class="matrix-detail-hero" id="gmDetalleHero" style="margin-bottom:24px">
+      <div>
+        <div class="detail-hero-icon" id="gmDetalleIcon">&#9672;</div>
+        <div class="detail-hero-title" id="gmDetalleTitulo">Matriz</div>
+        <div class="detail-hero-sub" id="gmDetalleSub">&#8211;</div>
+      </div>
+    </div>
+
+    <div class="tab-nav" id="gmDetalleTabs">
+      <button class="tab-btn active" onclick="switchGMDetalleTab('gmd-objetivos',this)">Objetivos</button>
+      <button class="tab-btn" onclick="switchGMDetalleTab('gmd-tareas',this)">Tareas</button>
+      <button class="tab-btn" onclick="switchGMDetalleTab('gmd-comentarios',this)">💬 Comentarios</button>
+    </div>
+
+    <!-- TAB OBJETIVOS -->
+    <div class="tab-content active" id="gmd-objetivos">
+      <div class="page-header" style="margin-bottom:16px">
+        <div><div style="font-size:14px;font-weight:500;color:var(--text-m)">Objetivos de esta matriz</div></div>
+        <button class="btn-gerente" onclick="openGMModalDetalle('objetivo','crear')">+ Nuevo Objetivo</button>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Título</th><th>Descripción</th><th>Prioridad</th>
+              <th>Fecha Límite</th><th>Observaciones</th><th>Acciones</th>
+            </tr></thead>
+            <tbody id="gmDetalleObjetivosTable">
+              <tr><td colspan="6" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB TAREAS -->
+    <div class="tab-content" id="gmd-tareas">
+      <div class="page-header" style="margin-bottom:16px">
+        <div><div style="font-size:14px;font-weight:500;color:var(--text-m)">Tareas de esta matriz</div></div>
+        <button class="btn-gerente" onclick="openGMModalDetalle('tarea','crear')">+ Nueva Tarea</button>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Título</th><th>Descripción</th><th>Responsable</th>
+              <th>Prioridad</th><th>Fecha</th><th>Observaciones</th><th>Acciones</th>
+            </tr></thead>
+            <tbody id="gmDetalleTareasTable">
+              <tr><td colspan="7" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB COMENTARIOS (Gerente) -->
+    <div class="tab-content" id="gmd-comentarios">
+      <div id="gmDetalleCommentSection"></div>
+    </div>
+  </section>
+

@@ -1,0 +1,77 @@
+<section class="exec-page" id="page-overview">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Resumen Ejecutivo</div>
+          <div class="page-subtitle">Estado general de operaciones · <span id="lastSync">Actualizando...</span></div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid" id="overviewStats">
+        <div class="stat-card">
+          <div class="stat-label">Matrices Activas</div>
+          <div class="stat-value" id="statMatrices">–</div>
+          <div class="stat-delta" id="statMatricesDelta">Cargando...</div>
+          <div class="stat-icon-bg">◈</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tareas Totales</div>
+          <div class="stat-value" id="statTareas">–</div>
+          <div class="stat-delta" id="statTareasDelta">Cargando...</div>
+          <div class="stat-icon-bg">☑</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Objetivos en Progreso</div>
+          <div class="stat-value" id="statObjetivos">–</div>
+          <div class="stat-delta" id="statObjetivosDelta">Cargando...</div>
+          <div class="stat-icon-bg">◎</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Estado Operativo</div>
+          <div class="stat-value" id="statEstado" style="font-size:20px">–</div>
+          <div class="stat-delta" id="statEstadoDelta">Cargando...</div>
+          <div class="stat-icon-bg">⊙</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Progreso por Matriz</div>
+            <span class="badge badge-gold" id="chartBadge">–</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartMatricesExec"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Distribución de Tareas</div>
+          </div>
+          <div class="chart-container" style="height:150px">
+            <canvas id="chartTareasExec"></canvas>
+          </div>
+          <div style="margin-top:12px" id="tareasLegend"></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Matrices Recientes</div>
+          </div>
+          <div id="overviewMatricesList">
+            <div class="loading-state"><div class="loading-spinner"></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Tareas Críticas</div>
+          </div>
+          <div id="overviewCriticas">
+            <div class="loading-state"><div class="loading-spinner"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </section>

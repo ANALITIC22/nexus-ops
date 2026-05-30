@@ -1,0 +1,20 @@
+<section class="exec-page" id="page-gm-tareas" style="display:none">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Mis Tareas</div>
+        <div class="page-subtitle">Gestionar tareas dentro de las matrices</div>
+      </div>
+      <button class="btn-gerente" onclick="openGMModal('tarea','crear')">+ Nueva Tarea</button>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Título</th><th>Descripción</th><th>Responsable</th>
+            <th>Prioridad</th><th>Fecha Límite</th><th>Matriz</th><th>Observaciones</th><th>Acciones</th>
+          </tr></thead>
+          <tbody id="gmTareasTable"><tr><td colspan="8" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>

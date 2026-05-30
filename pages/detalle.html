@@ -1,0 +1,40 @@
+<section class="exec-page" id="page-detalle">
+      <div style="margin-bottom:18px">
+        <button class="btn-back" onclick="navTo('matrices',null)">← Volver a Matrices</button>
+      </div>
+
+      <div class="matrix-detail-hero" id="detailHero">
+        <div>
+          <div class="detail-hero-icon" id="detailIcon">◈</div>
+          <div class="detail-hero-title" id="detailTitle">Cargando...</div>
+          <div class="detail-hero-sub" id="detailSub">–</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;z-index:1">
+          <div id="detailEstadoBadge"></div>
+          <div id="detailCritBadge"></div>
+        </div>
+      </div>
+
+      <div class="tab-nav" id="detailTabs">
+        <button class="tab-btn active" onclick="switchDetailTab('tab-info',this)">Información</button>
+        <button class="tab-btn" onclick="switchDetailTab('tab-objetivos',this)">Objetivos</button>
+        <button class="tab-btn" onclick="switchDetailTab('tab-tareas',this)">Tareas</button>
+        <button class="tab-btn" onclick="switchDetailTab('tab-gestion',this)">Gestión</button>
+        <button class="tab-btn" onclick="switchDetailTab('tab-diagramas',this)">Diagramas</button>
+        <button class="tab-btn" onclick="switchDetailTab('tab-historial',this)">Historial</button>
+        <button class="tab-btn" onclick="switchDetailTab('tab-comentarios-det',this)">💬 Comentarios</button>
+      </div>
+
+      <div class="tab-content active" id="tab-info">
+        <div class="grid-2"><div class="card" id="detailInfoCard"><div class="loading-state"><div class="loading-spinner"></div></div></div>
+        <div class="card" id="detailIndicatorsCard"><div class="loading-state"><div class="loading-spinner"></div></div></div></div>
+      </div>
+      <div class="tab-content" id="tab-objetivos"><div class="card" id="detailObjetivosList"><div class="loading-state"><div class="loading-spinner"></div></div></div></div>
+      <div class="tab-content" id="tab-tareas"><div class="card" id="detailTareasList"><div class="loading-state"><div class="loading-spinner"></div></div></div></div>
+      <div class="tab-content" id="tab-gestion"><div id="detailGestionList"><div class="loading-state"><div class="loading-spinner"></div></div></div></div>
+      <div class="tab-content" id="tab-diagramas"><div id="detailDiagramasList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"><div class="loading-state"><div class="loading-spinner"></div></div></div></div>
+      <div class="tab-content" id="tab-historial"><div id="detailHistorialList" class="timeline"><div class="loading-state"><div class="loading-spinner"></div></div></div></div>
+      <div class="tab-content" id="tab-comentarios-det">
+        <div id="detalleCommentSection"></div>
+      </div>
+    </section>

@@ -1,0 +1,75 @@
+<!-- ============================================================ LOGIN SCREEN -->
+<div id="loginScreen">
+  <!-- Decorative floating icons -->
+  <span class="login-deco-icon">⬡</span>
+  <span class="login-deco-icon">◈</span>
+
+  <div class="login-container">
+    <!-- Brand -->
+    <div class="login-brand">
+      <div class="login-brand-icon">⬡</div>
+      <div class="login-brand-name">NEXUS OPS</div>
+      <div class="login-brand-sub">Panel Ejecutivo — Acceso</div>
+    </div>
+
+    <!-- Role selector -->
+    <div class="login-roles-label">Seleccione su tipo de acceso</div>
+    <div class="login-roles">
+
+      <!-- GENERAL -->
+      <div class="role-card" id="roleGeneral" onclick="selectRole('general')">
+        <span class="role-icon">👥</span>
+        <div class="role-name">General</div>
+        <div class="role-desc">Acceso de consulta y participación sin credenciales requeridas</div>
+        <div class="role-perms">
+          <span class="role-perm-tag yes">Ver estadísticas</span>
+          <span class="role-perm-tag yes">Peticiones</span>
+          <span class="role-perm-tag yes">Comentarios</span>
+          <span class="role-perm-tag no">Sin edición</span>
+        </div>
+      </div>
+
+      <!-- GERENTE -->
+      <div class="role-card" id="roleGerente" onclick="selectRole('gerente')">
+        <span class="role-icon">🏛</span>
+        <div class="role-name">Gerente</div>
+        <div class="role-desc">Acceso completo de dirección con credenciales requeridas</div>
+        <div class="role-perms">
+          <span class="role-perm-tag yes">Crear matrices</span>
+          <span class="role-perm-tag yes">Objetivos</span>
+          <span class="role-perm-tag yes">Tareas</span>
+          <span class="role-perm-tag yes">Ver comentarios</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Password (visible only for gerente) -->
+    <div class="login-password-section" id="passwordSection">
+      <label class="login-input-label">Contraseña de Gerente</label>
+      <div class="login-input-wrap">
+        <input class="login-input" id="loginPasswordInput" type="password"
+          placeholder="Ingrese su contraseña..." autocomplete="current-password"
+          onkeydown="if(event.key==='Enter')doLogin()">
+        <button class="login-eye-btn" id="eyeBtn" onclick="toggleEye()" type="button">👁</button>
+      </div>
+      <div class="login-error-msg" id="loginErrorMsg">⚠ Contraseña incorrecta. Intente nuevamente.</div>
+    </div>
+
+    <!-- Enter button -->
+    <button class="login-btn" id="loginBtn" onclick="doLogin()" disabled>
+      <div class="login-btn-inner">
+        <span id="loginBtnIcon">→</span>
+        <span id="loginBtnText">Seleccione un tipo de acceso</span>
+      </div>
+    </button>
+
+    <div class="login-footer-note">
+      Sistema de gestión operativa NEXUS OPS<br>
+      Acceso restringido a personal autorizado
+    </div>
+  </div>
+</div>
+
+<!-- Mobile sidebar overlay backdrop -->
+<div class="mobile-sidebar-overlay" id="mobileSidebarOverlay" onclick="closeMobileSidebar()"></div>

@@ -14,22 +14,14 @@ export function renderGlobalTareas() {
   const tbody = document.getElementById('global-tareas-tbody');
   if (!tbody) return;
 
-<<<<<<< HEAD
   if (!AppState.tareas.length) { // early length check
-=======
-  if (!AppState.tareas.length) {
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:20px;color:var(--text-m)">Sin tareas registradas.</td></tr>`;
     return;
   }
 
-<<<<<<< HEAD
   const tareasValidas = AppState.tareas.filter(t => !t.esPeticion || t.peticionEstado === 'aceptada');
 
   tbody.innerHTML = tareasValidas.map(t => {
-=======
-  tbody.innerHTML = AppState.tareas.map(t => {
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     const m = AppState.matrices.find(x => String(x.id) === String(t.matrizId));
     return `<tr>
       <td style="font-weight:500;color:var(--deep)">${t.titulo}</td>
@@ -53,14 +45,9 @@ export function renderTareasTab() {
   if (!tbody) return;
 
   const all       = AppState.tareas.filter(t => String(t.matrizId) === String(AppState.currentMatrizId));
-<<<<<<< HEAD
   // Las peticiones aceptadas ya son tareas normales; solo se muestran como petición las pendientes/denegadas
   const tareas    = all.filter(t => !t.esPeticion || t.peticionEstado === 'aceptada');
   const peticiones = all.filter(t => t.esPeticion && t.peticionEstado !== 'aceptada');
-=======
-  const tareas    = all.filter(t => !t.esPeticion);
-  const peticiones = all.filter(t => t.esPeticion);
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 
   if (!all.length) {
     tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:16px;color:var(--text-m);font-size:12.5px">Sin tareas ni peticiones. Use el botón + para agregar.</td></tr>`;
@@ -298,16 +285,10 @@ export async function deleteTareaGlobal(id) {
 }
 
 export function filterTareasGlobal(val) {
-<<<<<<< HEAD
   const soloTareas = AppState.tareas.filter(t => !t.esPeticion || t.peticionEstado === 'aceptada');
   const filtered = val
     ? soloTareas.filter(t => t.titulo.toLowerCase().includes(val.toLowerCase()) || t.estado === val)
     : soloTareas;
-=======
-  const filtered = val
-    ? AppState.tareas.filter(t => t.titulo.toLowerCase().includes(val.toLowerCase()) || t.estado === val)
-    : AppState.tareas;
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   const tbody = document.getElementById('global-tareas-tbody');
   if (!tbody) return;
   if (!filtered.length) {

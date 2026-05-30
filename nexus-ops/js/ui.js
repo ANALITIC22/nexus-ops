@@ -48,10 +48,7 @@ import {
   renderAdminComments
 } from './comentarios.js';
 import { updateDashboard } from './dashboard.js';
-<<<<<<< HEAD
 import { renderPeticiones } from './peticiones.js';
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 
 // ── Navegación ───────────────────────────────────────────────
 export function navigate(page, navEl) {
@@ -74,10 +71,7 @@ export function navigate(page, navEl) {
     matrices:        'Matrices Operativas',
     objetivos:       'Objetivos',
     tareas:          'Tareas',
-<<<<<<< HEAD
     peticiones:      'Peticiones del Panel Ejecutivo',
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     gestion:         'Gestión Operativa',
     diagramas:       'Diagramas',
     actividad:       'Actividad',
@@ -92,10 +86,7 @@ export function navigate(page, navEl) {
   if (page === 'matrices')        renderMatricesGrid();
   if (page === 'objetivos')       renderGlobalObjetivos();
   if (page === 'tareas')          renderGlobalTareas();
-<<<<<<< HEAD
   if (page === 'peticiones')      renderPeticiones();
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   if (page === 'diagramas')       renderGlobalDiagramas();
   if (page === 'actividad')       renderActividad();
   if (page === 'reportes')        renderReportes();

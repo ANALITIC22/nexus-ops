@@ -89,26 +89,10 @@
 
   <!-- TAB: GESTIÓN OPERATIVA -->
   <div class="tab-content" id="tab-gestion">
-<<<<<<< HEAD
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--deep)">Bitácora Operativa</div>
-      <button class="btn btn-primary btn-sm" onclick="saveGestion()">💾 Guardar</button>
-    </div>
-
-    <!-- Tipo de registro (mini chips) -->
-    <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
-      <button class="gest-admin-tipo-btn active" data-tipo="general"   onclick="selectTipoAdmin(this,'gestionEditor')">📝 General</button>
-      <button class="gest-admin-tipo-btn"        data-tipo="monitoreo"  onclick="selectTipoAdmin(this,'gestionEditor')">📋 Monitoreo</button>
-      <button class="gest-admin-tipo-btn"        data-tipo="validacion" onclick="selectTipoAdmin(this,'gestionEditor')">✓ Validación</button>
-      <button class="gest-admin-tipo-btn"        data-tipo="incidente"  onclick="selectTipoAdmin(this,'gestionEditor')">⚠ Incidente</button>
-    </div>
-
-=======
     <div class="page-header" style="margin-bottom:16px">
       <div class="card-title">Bitácora Operativa</div>
       <button class="btn btn-primary btn-sm" onclick="saveGestion()">💾 Guardar</button>
     </div>
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     <div class="op-editor">
       <div class="op-editor-toolbar">
         <button class="toolbar-btn" onclick="formatText('bold')"><b>B</b></button>
@@ -118,39 +102,18 @@
         <button class="toolbar-btn" onclick="formatText('insertUnorderedList')">☰</button>
         <button class="toolbar-btn" onclick="formatText('insertOrderedList')">①</button>
         <div class="toolbar-divider"></div>
-<<<<<<< HEAD
-        <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplate('monitoreo')">📋 Monitoreo</button>
-        <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplate('validacion')">✓ Validación</button>
-        <button class="toolbar-btn" style="width:auto;padding:0 8px;font-size:11px" onclick="insertTemplate('incidente')">⚠ Incidente</button>
-=======
         <button class="toolbar-btn" onclick="insertTemplate('monitoreo')">📋 Monitoreo</button>
         <button class="toolbar-btn" onclick="insertTemplate('validacion')">✓ Validación</button>
         <button class="toolbar-btn" onclick="insertTemplate('incidente')">⚠ Incidente</button>
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
       </div>
       <div class="op-editor-area"
            contenteditable="true"
            id="gestionEditor"
-<<<<<<< HEAD
-           style="min-height:180px"
-           data-placeholder="Registre aquí sus actividades operativas: monitoreos, validaciones, controles, gestión diaria..."></div>
-    </div>
-    <div style="display:flex;justify-content:flex-end;margin-top:8px;gap:8px">
-      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('gestionEditor').innerText=''">Limpiar</button>
-      <button class="btn btn-primary btn-sm" onclick="saveGestion()">💾 Guardar</button>
-    </div>
-
-    <div style="margin-top:22px">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--deep);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px">
-        Registros guardados
-        <span id="gestion-registros-count" style="font-size:11px;font-family:'DM Mono',monospace;background:var(--deep-15);color:var(--deep);padding:2px 8px;border-radius:20px;font-weight:400"></span>
-=======
            data-placeholder="Registre aquí sus actividades operativas: monitoreos, validaciones, controles, gestión diaria..."></div>
     </div>
     <div style="margin-top:18px">
       <div class="card-title" style="margin-bottom:12px;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--deep)">
         Registros Guardados
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
       </div>
       <div id="gestion-registros"></div>
     </div>
@@ -162,11 +125,7 @@
       <div class="card-title">Diagramas de Flujo</div>
       <button class="btn btn-primary btn-sm" onclick="openModal('modal-nuevo-diagrama')">+ Subir Diagrama</button>
     </div>
-<<<<<<< HEAD
     <div class="diag-gallery" id="diagramas-grid"></div>
-=======
-    <div class="grid-3" id="diagramas-grid"></div>
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   </div>
 
   <!-- TAB: HISTORIAL -->

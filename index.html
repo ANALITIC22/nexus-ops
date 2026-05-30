@@ -760,108 +760,16 @@
     .btn-back:hover { background: var(--gold-10); border-color: var(--border-g); color: var(--deep); }
 
     /* ============================================================ GESTION */
-    /* ============================================================
-       GESTIÓN — sistema de tarjetas mejorado (exec panel)
-       ============================================================ */
-    .gest-feed { display: flex; flex-direction: column; gap: 12px; }
-
-    .gest-card {
+    .gestion-entry {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-m);
-      overflow: hidden;
-      transition: box-shadow .2s, border-color .2s;
+      padding: 18px;
+      margin-bottom: 14px;
     }
-    .gest-card:hover { box-shadow: 0 4px 18px rgba(71,40,37,.08); border-color: var(--border-g); }
-
-    .gest-card-top {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-    }
-    .gest-accent {
-      width: 4px;
-      flex-shrink: 0;
-      background: var(--gold);
-      border-radius: 0;
-    }
-    .gest-accent.tipo-incidente  { background: var(--red,#8B2E2E); }
-    .gest-accent.tipo-monitoreo  { background: #4A7C59; }
-    .gest-accent.tipo-validacion { background: #5A7BAF; }
-    .gest-accent.tipo-global     { background: var(--gold); }
-
-    .gest-card-body { flex: 1; padding: 14px 16px; }
-
-    .gest-card-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-    }
-    .gest-badge {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-family: 'DM Mono', monospace;
-    }
-    .gest-badge.tipo-incidente  { background: rgba(139,46,46,.12); color: var(--red,#8B2E2E); }
-    .gest-badge.tipo-monitoreo  { background: rgba(74,124,89,.12); color: #4A7C59; }
-    .gest-badge.tipo-validacion { background: rgba(90,123,175,.12); color: #5A7BAF; }
-    .gest-badge.tipo-global     { background: var(--gold-10); color: var(--gold); }
-    .gest-badge.tipo-default    { background: var(--deep-15); color: var(--deep); }
-
-    .gest-matrix-tag {
-      font-size: 10px; color: var(--text-m);
-      background: var(--deep-15);
-      padding: 2px 7px; border-radius: 20px;
-      font-family: 'DM Mono', monospace;
-    }
-    .gest-date {
-      margin-left: auto;
-      font-size: 10px;
-      font-family: 'DM Mono', monospace;
-      color: var(--text-l);
-      white-space: nowrap;
-    }
-
-    .gest-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px; font-weight: 600;
-      color: var(--deep); margin-bottom: 6px;
-    }
-    .gest-card-text {
-      font-size: 12.5px; color: var(--text-b);
-      line-height: 1.75; white-space: pre-wrap;
-    }
-
-    /* Stats bar above feed */
-    .gest-stats-bar {
-      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
-    }
-    .gest-stat {
-      flex: 1; min-width: 90px;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-m); padding: 14px 16px;
-      text-align: center;
-    }
-    .gest-stat-n { font-size: 22px; font-weight: 700; color: var(--deep); font-family: 'Cormorant Garamond',serif; }
-    .gest-stat-l { font-size: 10px; color: var(--text-m); margin-top: 2px; text-transform: uppercase; letter-spacing: .06em; }
-
-    /* Filter chips */
-    .gest-filters { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
-    .gest-chip {
-      padding: 4px 12px; border-radius: 20px; font-size: 11px;
-      border: 1px solid var(--border); background: transparent;
-      color: var(--text-m); cursor: pointer; transition: all .15s;
-      font-family: 'DM Sans', sans-serif; font-weight: 500;
-    }
-    .gest-chip:hover, .gest-chip.active {
-      background: var(--deep); color: #fff; border-color: var(--deep);
-    }
+    .gestion-entry-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .gestion-entry-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; color: var(--deep); }
+    .gestion-entry-body { font-size: 13px; color: var(--text-b); line-height: 1.7; }
 
     /* ============================================================ DIAGRAM CARD */
     .diagram-card {
@@ -1777,14 +1685,7 @@
       <div class="page-header">
         <div><div class="page-title">Gestión Operativa</div><div class="page-subtitle">Bitácora de actividades del analista</div></div>
       </div>
-      <div class="gest-stats-bar" id="gestStatsBar"></div>
-      <div class="gest-filters" id="gestFilters">
-        <button class="gest-chip active" onclick="filterGestion('all',this)">Todos</button>
-        <button class="gest-chip" onclick="filterGestion('incidente',this)">⚠ Incidentes</button>
-        <button class="gest-chip" onclick="filterGestion('monitoreo',this)">📋 Monitoreo</button>
-        <button class="gest-chip" onclick="filterGestion('validacion',this)">✓ Validación</button>
-      </div>
-      <div class="gest-feed" id="gestionExecList"><div class="loading-state"><div class="loading-spinner"></div></div></div>
+      <div id="gestionExecList"><div class="loading-state"><div class="loading-spinner"></div></div></div>
     </section>
 
     <!-- ===== PAGE: ACTIVIDAD ===== -->
@@ -2654,55 +2555,18 @@ function renderDetailTareas(m){
     </div>`;
 }
 
-// ── Helpers de gestión ────────────────────────────────────────
-function _gestTipo(texto){
-  const t = (texto||'').toLowerCase();
-  if(t.includes('[incidente]')||t.includes('incidente')) return 'incidente';
-  if(t.includes('[monitoreo]')||t.includes('monitoreo'))  return 'monitoreo';
-  if(t.includes('[validaci'))                              return 'validacion';
-  return 'default';
-}
-function _gestTipoLabel(tipo){
-  return {incidente:'⚠ Incidente',monitoreo:'📋 Monitoreo',validacion:'✓ Validación',global:'🌐 Global',default:'📝 Registro'}[tipo]||'📝 Registro';
-}
-function _buildGestCard(g, showMatrix){
-  const tipo  = g.tipo==='global'?'global':_gestTipo(g.texto||g.contenido||'');
-  const label = _gestTipoLabel(tipo);
-  const txt   = (g.contenido||g.texto||'–').replace(/\[.*?\]/g,'').trim();
-  const title = g.titulo || (g.texto||'').split('\n')[0].replace(/\[.*?\]/g,'').trim().slice(0,60) || 'Registro operativo';
-  const matrixTag = showMatrix && g.matrizId && g.matrizId!=='General'
-    ? `<span class="gest-matrix-tag">${matrizName(g.matrizId)}</span>` : '';
-  return `
-  <div class="gest-card">
-    <div class="gest-card-top">
-      <div class="gest-accent tipo-${tipo}"></div>
-      <div class="gest-card-body">
-        <div class="gest-card-meta">
-          <span class="gest-badge tipo-${tipo}">${label}</span>
-          ${matrixTag}
-          <span class="gest-date">${fmtDate(g.fecha)}</span>
-        </div>
-        <div class="gest-card-title">${title}</div>
-        <div class="gest-card-text">${txt}</div>
-      </div>
-    </div>
-  </div>`;
-}
-
 function renderDetailGestion(m){
   const gests = S.gestion.filter(g=>String(g.matrizId)===String(m.id));
   const el = document.getElementById('detailGestionList');
-  if(!gests.length){el.innerHTML=`<div class="empty-state"><div class="empty-icon">✎</div><div class="empty-title">Sin registros de gestión</div><div class="empty-text">El administrador aún no ha generado registros para esta matriz</div></div>`;return;}
-  // Mini stats
-  const tipos = gests.reduce((acc,g)=>{const t=_gestTipo(g.texto||g.contenido);acc[t]=(acc[t]||0)+1;return acc;},{});
-  const statsHtml = `<div class="gest-stats-bar" style="margin-bottom:16px">
-    <div class="gest-stat"><div class="gest-stat-n">${gests.length}</div><div class="gest-stat-l">Total</div></div>
-    ${tipos.incidente?`<div class="gest-stat"><div class="gest-stat-n" style="color:var(--red)">${tipos.incidente}</div><div class="gest-stat-l">Incidentes</div></div>`:''}
-    ${tipos.monitoreo?`<div class="gest-stat"><div class="gest-stat-n" style="color:#4A7C59">${tipos.monitoreo}</div><div class="gest-stat-l">Monitoreos</div></div>`:''}
-    ${tipos.validacion?`<div class="gest-stat"><div class="gest-stat-n" style="color:#5A7BAF">${tipos.validacion}</div><div class="gest-stat-l">Validaciones</div></div>`:''}
-  </div>`;
-  const sorted = [...gests].sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
-  el.innerHTML = statsHtml + `<div class="gest-feed">${sorted.map(g=>_buildGestCard(g,false)).join('')}</div>`;
+  if(!gests.length){el.innerHTML=`<div class="empty-state"><div class="empty-icon">✎</div><div class="empty-title">Sin registros de gestión</div></div>`;return;}
+  el.innerHTML = gests.map(g=>`
+    <div class="gestion-entry">
+      <div class="gestion-entry-header">
+        <div class="gestion-entry-title">${g.titulo||'Registro operativo'}</div>
+        <span style="font-size:10px;font-family:'DM Mono',monospace;color:var(--text-m)">${fmtDate(g.fecha)}</span>
+      </div>
+      <div class="gestion-entry-body">${g.contenido||g.texto||'–'}</div>
+    </div>`).join('');
 }
 
 function _toDriveViewUrl(raw){
@@ -2722,7 +2586,6 @@ function renderDetailDiagramas(m){
   const diags = S.diagramas.filter(d=>String(d.matrizId)===String(m.id));
   const el = document.getElementById('detailDiagramasList');
   if(!diags.length){
-<<<<<<< HEAD
     el.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">⬡</div><div class="empty-title">Sin diagramas</div><div class="empty-text">El administrador aún no ha asignado diagramas para esta matriz</div></div>`;
     return;
   }
@@ -2743,33 +2606,6 @@ function renderDetailDiagramas(m){
         </div>
         ${hasLink?`<div style="font-size:9px;background:var(--gold-10,rgba(212,175,55,.12));color:var(--gold,#d4af37);border:1px solid var(--border-g,rgba(212,175,55,.2));border-radius:4px;padding:2px 8px;margin-top:2px">🔗 Drive</div>`:''}
       </div>`;
-=======
-    el.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">⬡</div><div class="empty-title">Sin diagramas</div><div class="empty-text">El administrador aún no ha subido diagramas para esta matriz</div></div>`;
-    return;
-  }
-  el.innerHTML = diags.map(d=>{
-    let previewHtml;
-    if(d.imageUrl){
-      if(d.fileType==='pdf'){
-        previewHtml = `<div class="diagram-preview" style="cursor:pointer;text-decoration:none" onclick="window.open('${d.imageUrl}','_blank')">
-          <div style="text-align:center">
-            <div style="font-size:42px">📄</div>
-            <div style="font-size:10px;color:var(--text-m);margin-top:4px;font-family:'DM Mono',monospace">PDF — Ver</div>
-          </div>
-        </div>`;
-      } else {
-        previewHtml = `<div class="diagram-preview" style="padding:0;cursor:pointer;overflow:hidden" onclick="window.open('${d.imageUrl}','_blank')">
-          <img src="${d.imageUrl}" alt="${d.nombre||'Diagrama'}"
-            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s"
-            onmouseover="this.style.transform='scale(1.04)'"
-            onmouseout="this.style.transform='scale(1)'"
-            onerror="this.parentElement.innerHTML='<div style=font-size:48px;opacity:.5>${d.emoji||'📊'}</div>'">
-        </div>`;
-      }
-    } else {
-      previewHtml = `<div class="diagram-preview">${d.emoji||'📊'}</div>`;
-    }
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
     return `
     <div class="diagram-card">
       ${previewHtml}
@@ -2779,16 +2615,10 @@ function renderDetailDiagramas(m){
         <div style="margin-top:6px;font-size:11px;color:var(--text-m)">${d.descripcion||d.desc||''}</div>
         <div style="margin-top:8px;display:flex;align-items:center;justify-content:space-between">
           <div style="font-size:10px;color:var(--text-l);font-family:'DM Mono',monospace">${fmtDate(d.fecha)}</div>
-<<<<<<< HEAD
           ${hasLink?`<a href="${linkUrl}" target="_blank" rel="noopener noreferrer"
             style="font-size:10px;color:var(--gold);font-weight:600;text-decoration:none;border:1px solid var(--border-g);padding:2px 8px;border-radius:4px;transition:all var(--trans)"
             onmouseover="this.style.background='var(--gold-10)'"
             onmouseout="this.style.background='transparent'">Abrir ↗</a>`:''}
-=======
-          ${d.imageUrl?`<a href="${d.imageUrl}" target="_blank" style="font-size:10px;color:var(--gold);font-weight:600;text-decoration:none;border:1px solid var(--border-g);padding:2px 8px;border-radius:4px;transition:all var(--trans)"
-            onmouseover="this.style.background='var(--gold-10)'"
-            onmouseout="this.style.background='transparent'">Ver ↗</a>`:''}
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
         </div>
       </div>
     </div>`;
@@ -2869,47 +2699,21 @@ function renderReportesExec(){
 }
 
 // ── RENDER GESTIÓN ────────────────────────────────────────────
-let _gestFilter = 'all';
-function filterGestion(tipo, btn){
-  _gestFilter = tipo;
-  document.querySelectorAll('.gest-chip').forEach(c=>c.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  renderGestionExec();
-}
-
 function renderGestionExec(){
   const el = document.getElementById('gestionExecList');
   if(!el) return;
-  if(!S.gestion.length){
-    el.innerHTML=`<div class="empty-state"><div class="empty-icon">✎</div><div class="empty-title">Sin registros</div><div class="empty-text">El administrador aún no ha generado registros de gestión</div></div>`;
-    return;
-  }
-
-  // Stats bar
-  const statsEl = document.getElementById('gestStatsBar');
-  if(statsEl){
-    const tipos = S.gestion.reduce((acc,g)=>{const t=g.tipo==='global'?'global':_gestTipo(g.texto||g.contenido);acc[t]=(acc[t]||0)+1;return acc;},{});
-    const matrices = new Set(S.gestion.map(g=>g.matrizId)).size;
-    statsEl.innerHTML = `
-      <div class="gest-stat"><div class="gest-stat-n">${S.gestion.length}</div><div class="gest-stat-l">Registros</div></div>
-      <div class="gest-stat"><div class="gest-stat-n">${matrices}</div><div class="gest-stat-l">Matrices</div></div>
-      ${tipos.incidente?`<div class="gest-stat"><div class="gest-stat-n" style="color:var(--red)">${tipos.incidente}</div><div class="gest-stat-l">Incidentes</div></div>`:''}
-      ${tipos.monitoreo?`<div class="gest-stat"><div class="gest-stat-n" style="color:#4A7C59">${tipos.monitoreo}</div><div class="gest-stat-l">Monitoreos</div></div>`:''}
-      ${tipos.validacion?`<div class="gest-stat"><div class="gest-stat-n" style="color:#5A7BAF">${tipos.validacion}</div><div class="gest-stat-l">Validaciones</div></div>`:''}`;
-  }
-
-  // Filter + sort
-  let list = [...S.gestion].sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
-  if(_gestFilter!=='all') list = list.filter(g=>{
-    const t = g.tipo==='global'?'global':_gestTipo(g.texto||g.contenido);
-    return t===_gestFilter;
-  });
-
-  if(!list.length){
-    el.innerHTML=`<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">Sin registros de este tipo</div></div>`;
-    return;
-  }
-  el.innerHTML = list.map(g=>_buildGestCard(g,true)).join('');
+  if(!S.gestion.length){el.innerHTML=`<div class="empty-state"><div class="empty-icon">✎</div><div class="empty-title">Sin registros</div></div>`;return;}
+  el.innerHTML = S.gestion.map(g=>`
+    <div class="gestion-entry">
+      <div class="gestion-entry-header">
+        <div>
+          <div class="gestion-entry-title">${g.titulo||'Registro operativo'}</div>
+          <div style="font-size:11px;color:var(--text-m);margin-top:2px">${matrizName(g.matrizId)}</div>
+        </div>
+        <span style="font-size:10px;font-family:'DM Mono',monospace;color:var(--text-m)">${fmtDate(g.fecha)}</span>
+      </div>
+      <div class="gestion-entry-body">${g.contenido||g.texto||'–'}</div>
+    </div>`).join('');
 }
 
 // ── RENDER ACTIVIDAD ──────────────────────────────────────────

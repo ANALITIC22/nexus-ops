@@ -44,24 +44,15 @@ import {
 import {
   saveGestion, saveGestionGlobal,
   formatText, formatTextG,
-<<<<<<< HEAD
-  insertTemplate, insertTemplateG,
-  clearGestionEditor, selectTipoAdmin
-=======
   insertTemplate, insertTemplateG
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 } from './js/gestion.js';
 
 // ── Diagramas ────────────────────────────────────────────────
 import {
   saveDiagrama, deleteDiagrama,
-<<<<<<< HEAD
   showFileName, handleDrop,
   abrirDiagrama, cerrarLightbox, descargarDiagrama,
   validateDriveLink
-=======
-  showFileName, handleDrop
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 } from './js/diagramas.js';
 
 // ── Reportes ─────────────────────────────────────────────────
@@ -73,7 +64,6 @@ import { saveConfig, savePerfil }       from './js/perfil.js';
 // ── Comentarios ──────────────────────────────────────────────
 import { filterAdminComments }          from './js/comentarios.js';
 
-<<<<<<< HEAD
 // ── Peticiones ───────────────────────────────────────────────
 import {
   renderPeticiones,
@@ -81,8 +71,6 @@ import {
   responderPeticion
 } from './js/peticiones.js';
 
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 // ============================================================
 // EXPONER AL DOM (requerido por onclick="..." en el HTML)
 // ============================================================
@@ -129,24 +117,16 @@ window.formatText            = formatText;
 window.formatTextG           = formatTextG;
 window.insertTemplate        = insertTemplate;
 window.insertTemplateG       = insertTemplateG;
-<<<<<<< HEAD
-window.clearGestionEditor    = clearGestionEditor;
-window.selectTipoAdmin       = selectTipoAdmin;
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 
 // Diagramas
 window.saveDiagrama          = saveDiagrama;
 window.deleteDiagrama        = deleteDiagrama;
 window.showFileName          = showFileName;
 window.handleDrop            = handleDrop;
-<<<<<<< HEAD
 window.abrirDiagrama         = abrirDiagrama;
 window.cerrarLightbox        = cerrarLightbox;
 window.descargarDiagrama     = descargarDiagrama;
 window.validateDriveLink     = validateDriveLink;
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 
 // Reportes
 window.saveReporte           = saveReporte;
@@ -159,14 +139,11 @@ window.savePerfil            = savePerfil;
 // Comentarios admin
 window.filterAdminComments   = filterAdminComments;
 
-<<<<<<< HEAD
 // Peticiones
 window.renderPeticiones      = renderPeticiones;
 window.filterPeticiones      = filterPeticiones;
 window.responderPeticion     = responderPeticion;
 
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 // ============================================================
 // INICIALIZACIÓN
 // ============================================================

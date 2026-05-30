@@ -16,10 +16,7 @@ import { updateDashboard } from './dashboard.js';
 import { renderProfileApps, applyPerfilToDOM, applyConfigToDOM } from './perfil.js';
 import { renderGlobalObjetivos, renderObjetivosTab, renderEstadoTab } from './objetivos.js';
 import { renderGlobalTareas, renderTareasTab } from './tareas.js';
-<<<<<<< HEAD
 import { renderPeticiones, updatePeticionesBadge } from './peticiones.js';
-=======
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
 import { renderGlobalDiagramas, renderDiagramasTab } from './diagramas.js';
 import { renderReportes } from './reportes.js';
 import { renderGestionGlobal, renderGestionRegistros } from './gestion.js';
@@ -65,17 +62,11 @@ export function initFirebaseSync() {
   // ── Tareas ────────────────────────────────────────────────
   onSnapshot(collection(db, 'tareas'), snap => {
     AppState.tareas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-<<<<<<< HEAD
     if (document.getElementById('page-tareas')?.classList.contains('active'))     renderGlobalTareas();
     if (document.getElementById('page-peticiones')?.classList.contains('active')) renderPeticiones();
     if (AppState.currentMatrizId) { renderTareasTab(); renderEstadoTab(); }
     updateDashboard();
     updatePeticionesBadge();
-=======
-    if (document.getElementById('page-tareas')?.classList.contains('active')) renderGlobalTareas();
-    if (AppState.currentMatrizId) { renderTareasTab(); renderEstadoTab(); }
-    updateDashboard();
->>>>>>> beab81a8eca86cdb7743cdd1d3c80348902aaf45
   }, err => console.error('Tareas error:', err));
 
   // ── Diagramas ─────────────────────────────────────────────

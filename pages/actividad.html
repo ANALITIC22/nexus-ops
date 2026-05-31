@@ -1,8 +1,28 @@
 <section class="exec-page" id="page-actividad">
       <div class="page-header">
-        <div><div class="page-title">Actividad Reciente</div><div class="page-subtitle">Historial cronológico de operaciones</div></div>
+        <div>
+          <div class="page-title">Actividad Reciente</div>
+          <div class="page-subtitle">Historial cronológico de operaciones</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <select class="filter-select" id="actividadFilterMatriz" onchange="applyActividadFilters()" style="font-size:11px">
+            <option value="">Todas las matrices</option>
+          </select>
+          <select class="filter-select" id="actividadFilterPeriodo" onchange="applyActividadFilters()" style="font-size:11px">
+            <option value="">Todo el período</option>
+            <option value="7">Últimos 7 días</option>
+            <option value="30">Últimos 30 días</option>
+            <option value="90">Últimos 3 meses</option>
+          </select>
+        </div>
       </div>
       <div class="card">
-        <div class="timeline" id="actividadTimeline"><div class="loading-state"><div class="loading-spinner"></div></div></div>
+        <div class="timeline" id="actividadTimeline">
+          <div class="empty-state">
+            <div class="empty-icon">⊙</div>
+            <div class="empty-title">Sin actividad registrada</div>
+            <div class="empty-text">El historial de operaciones aparecerá aquí a medida que se generen registros de gestión.</div>
+          </div>
+        </div>
       </div>
     </section>

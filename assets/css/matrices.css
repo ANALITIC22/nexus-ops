@@ -1,0 +1,104 @@
+/* ============================================================
+   matrices.css — Matrices Operativas y Vista Detalle
+   Usado por: pages/matrices.html · pages/detalle.html
+             renderMatricesExec() · openMatrizExec() en app.js
+============================================================ */
+
+/* ── MATRIX EXEC CARD (grid de matrices) ─────────────────────── */
+.matrix-exec-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  transition: all var(--trans);
+  cursor: pointer;
+  box-shadow: var(--shadow-s);
+}
+.matrix-exec-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-l); }
+.matrix-exec-header {
+  background: linear-gradient(135deg, var(--deep), #1A4A6E);
+  padding: 18px 20px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.matrix-exec-icon { font-size: 28px; margin-bottom: 8px; }
+.matrix-exec-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--cream); }
+.matrix-exec-type { font-size: 10px; color: rgba(107,158,196,0.7); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+.matrix-exec-body { padding: 16px 20px; }
+.matrix-exec-desc { font-size: 12px; color: var(--text-m); line-height: 1.6; margin-bottom: 14px; }
+.matrix-exec-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 14px; }
+.exec-stat-mini { text-align: center; background: var(--gold-05); border-radius: var(--radius-s); padding: 8px; }
+.exec-stat-mini-val { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--deep); }
+.exec-stat-mini-lbl { font-size: 9px; color: var(--text-m); text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ── FILTER BAR (matrices page) ─────────────────────────────── */
+.filter-input {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  padding: 7px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; color: var(--text-b);
+  outline: none; transition: border-color var(--trans);
+}
+.filter-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-10); }
+.filter-select {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  padding: 7px 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; color: var(--text-b);
+  outline: none; cursor: pointer; transition: border-color var(--trans);
+}
+.filter-select:focus { border-color: var(--gold); }
+
+/* Generic button ghost (limpiar filtros) */
+.btn { display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-s); padding: 7px 14px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all var(--trans); font-family: 'DM Sans', sans-serif; border: none; }
+.btn-ghost { background: none; border: 1px solid var(--border); color: var(--text-m); }
+.btn-ghost:hover { background: var(--gold-10); color: var(--deep); border-color: var(--border-g); }
+
+/* ── DETAIL HERO ────────────────────────────────────────────── */
+.matrix-detail-hero {
+  background: linear-gradient(135deg, var(--deep) 0%, #2B5980 70%);
+  border-radius: var(--radius-l);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.matrix-detail-hero::after {
+  content: attr(data-icon);
+  position: absolute; right: 32px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 72px; opacity: 0.12;
+}
+.detail-hero-icon { font-size: 36px; margin-bottom: 8px; }
+.detail-hero-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+.detail-hero-sub { font-size: 12px; color: rgba(214,232,245,0.6); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ── TABS ───────────────────────────────────────────────────── */
+.tab-nav { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 12.5px; font-weight: 500;
+  color: var(--text-m); background: none; border: none;
+  cursor: pointer; position: relative; transition: color var(--trans);
+  font-family: 'DM Sans', sans-serif; border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.tab-btn:hover { color: var(--deep); }
+.tab-btn.active { color: var(--deep); border-bottom-color: var(--gold); font-weight: 600; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeInUp 0.25s ease; }
+
+/* ── STATE BANNER ───────────────────────────────────────────── */
+.state-banner {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px; border-radius: var(--radius-m);
+  margin-bottom: 16px;
+}
+.state-banner.green { background: var(--green-bg); border: 1px solid rgba(46,125,82,0.2); }
+.state-banner.yellow { background: var(--yellow-bg); border: 1px solid rgba(160,120,0,0.2); }
+.state-banner.red { background: var(--red-bg); border: 1px solid rgba(139,46,46,0.2); }
+.state-emoji { font-size: 22px; }
+.state-name { font-size: 15px; font-weight: 600; color: var(--deep); }
+.state-sub { font-size: 11px; color: var(--text-m); }

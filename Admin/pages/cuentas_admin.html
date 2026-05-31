@@ -1,0 +1,140 @@
+<!--
+  PÁGINA: Cuentas de Administrador
+  Archivo: pages/cuentas_admin.html
+  ID de sección: page-cuentas-admin
+  Inyectado en: #main-root (index.html)
+  Nota: Esta página solo es visible cuando el admin está autenticado
+-->
+
+<section class="page" id="page-cuentas-admin">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Cuentas de Administrador</div>
+      <div class="page-subtitle">Gestión de accesos · Permisos · Matrices por admin</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary" onclick="recargarAdmins()">↺ Actualizar</button>
+      <button class="btn btn-primary" onclick="openModal('modal-crear-admin')">+ Nueva Cuenta</button>
+    </div>
+  </div>
+
+  <!-- Stats resumen -->
+  <div class="ca-stats-row">
+    <div class="ca-stat-card">
+      <div class="ca-stat-icon">👥</div>
+      <div>
+        <div class="ca-stat-val" id="ca-total-admins">0</div>
+        <div class="ca-stat-lbl">Administradores</div>
+      </div>
+    </div>
+    <div class="ca-stat-card">
+      <div class="ca-stat-icon">◈</div>
+      <div>
+        <div class="ca-stat-val" id="ca-total-matrices">0</div>
+        <div class="ca-stat-lbl">Matrices Totales</div>
+      </div>
+    </div>
+    <div class="ca-stat-card">
+      <div class="ca-stat-icon">✓</div>
+      <div>
+        <div class="ca-stat-val" id="ca-my-matrices">0</div>
+        <div class="ca-stat-lbl">Mis Matrices</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid de admins -->
+  <div class="ca-grid" id="ca-admins-grid">
+    <div class="ca-empty">
+      <div class="ca-empty-icon">⏳</div>
+      <div class="ca-empty-title">Cargando cuentas...</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── LOGIN OVERLAY (se muestra si el admin no está autenticado) ── -->
+<div id="admin-login-overlay">
+  <div class="login-card">
+    <div class="login-brand">
+      <span class="login-brand-icon">⬡</span>
+      <div class="login-brand-name">NEXUS OPS</div>
+      <div class="login-brand-sub">Panel Administrador</div>
+    </div>
+
+    <div class="login-form-title">Iniciar Sesión</div>
+
+    <div class="login-field">
+      <label class="login-label" for="loginEmail">Correo electrónico</label>
+      <input
+        class="login-input"
+        type="email"
+        id="loginEmail"
+        placeholder="admin@empresa.com"
+        onkeydown="if(event.key==='Enter') loginAdminUI()"
+      >
+    </div>
+
+    <div class="login-field">
+      <label class="login-label" for="loginPassword">Contraseña</label>
+      <div class="login-password-wrap">
+        <input
+          class="login-input"
+          type="password"
+          id="loginPassword"
+          placeholder="••••••••"
+          onkeydown="if(event.key==='Enter') loginAdminUI()"
+        >
+        <button class="login-eye-btn" id="loginEyeBtn" onclick="toggleLoginEye()" type="button">👁</button>
+      </div>
+      <div class="login-error" id="loginError">Credenciales incorrectas. Intenta nuevamente.</div>
+    </div>
+
+    <button class="login-btn" id="loginSubmitBtn" onclick="loginAdminUI()">
+      <span>Entrar al Panel</span>
+      <span>→</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ── MODAL: Crear nueva cuenta admin ─────────────────────────── -->
+<div class="modal-overlay" id="modal-crear-admin">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-header">
+      <div class="modal-title" id="modalAdminTitle">Nueva Cuenta Administrador</div>
+      <button class="modal-close" onclick="closeModal('modal-crear-admin')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre completo *</label>
+          <input class="form-control" id="caNombre" placeholder="Ej: Carlos López">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cargo</label>
+          <input class="form-control" id="caCargo" placeholder="Analista, Supervisor...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico *</label>
+        <input class="form-control" type="email" id="caEmail" placeholder="admin@empresa.com">
+      </div>
+      <div class="form-group" id="caPasswordGroup">
+        <label class="form-label">Contraseña *</label>
+        <div class="login-password-wrap">
+          <input class="form-control" type="password" id="caPassword" placeholder="Mínimo 6 caracteres" oninput="checkPasswordStrength(this.value)">
+          <button class="login-eye-btn" onclick="toggleModalEye()" type="button">👁</button>
+        </div>
+        <div class="password-strength">
+          <div class="password-strength-fill" id="pwStrengthBar"></div>
+        </div>
+        <div style="font-size:10px;color:var(--text-m);margin-top:4px" id="pwStrengthText"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-crear-admin')">Cancelar</button>
+      <button class="btn btn-primary" id="btnGuardarAdmin" onclick="guardarAdmin()">Crear Cuenta</button>
+    </div>
+  </div>
+</div>

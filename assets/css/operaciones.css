@@ -1,0 +1,109 @@
+/* ============================================================
+   operaciones.css — Tareas, Objetivos, Gestión, Actividad, Diagramas
+   Usado por: pages/tareas.html · pages/objetivos.html
+             pages/gestion.html · pages/actividad.html
+             pages/detalle.html (tabs de gestión, diagramas, historial)
+============================================================ */
+
+/* ── TASK ROW ───────────────────────────────────────────────── */
+.task-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: var(--radius-s);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin-bottom: 8px;
+  transition: all var(--trans);
+}
+.task-row:hover { border-color: var(--border-g); background: var(--gold-05); }
+.task-title { font-size: 13px; font-weight: 500; color: var(--deep); flex: 1; }
+.task-meta { font-size: 11px; color: var(--text-m); }
+.task-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-green  { background: var(--green); }
+.dot-yellow { background: var(--yellow); }
+.dot-red    { background: var(--red); }
+.dot-gold   { background: var(--gold); }
+.dot-gray   { background: var(--text-l); }
+
+/* ── PETICION BADGE ─────────────────────────────────────────── */
+.peticion-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(66,99,140,0.08); color: var(--warm);
+  border: 1px dashed var(--border-g);
+  padding: 2px 9px; border-radius: 20px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.peticion-row {
+  border-left: 3px solid var(--gold) !important;
+  background: linear-gradient(90deg, var(--gold-05), var(--bg-card)) !important;
+}
+.peticion-row:hover {
+  background: linear-gradient(90deg, var(--gold-10), var(--gold-05)) !important;
+}
+
+/* ── TIMELINE (actividad / historial) ───────────────────────── */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before {
+  content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+  width: 1px; background: var(--border-g);
+}
+.timeline-item { position: relative; margin-bottom: 20px; }
+.timeline-dot {
+  position: absolute; left: -20px; top: 4px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold); border: 2px solid var(--bg-main);
+}
+.timeline-dot.green-dot  { background: var(--green); }
+.timeline-dot.yellow-dot { background: var(--yellow); }
+.timeline-dot.red-dot    { background: var(--red); }
+.timeline-date { font-size: 10px; font-weight: 600; color: var(--text-m); letter-spacing: 0.08em; margin-bottom: 4px; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+.timeline-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  padding: 12px 14px;
+}
+.timeline-title { font-size: 13px; font-weight: 500; color: var(--deep); margin-bottom: 4px; }
+.timeline-desc { font-size: 12px; color: var(--text-m); line-height: 1.5; }
+
+/* ── GESTION ENTRIES (bitácora) ─────────────────────────────── */
+.gestion-entry {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.gestion-entry-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.gestion-entry-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; color: var(--deep); }
+.gestion-entry-body { font-size: 13px; color: var(--text-b); line-height: 1.7; }
+
+/* ── DIAGRAM CARD ───────────────────────────────────────────── */
+.diagram-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+.diagram-preview {
+  height: 140px; background: var(--gold-05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; border-bottom: 1px solid var(--border);
+}
+.diagram-info { padding: 14px 16px; }
+.diagram-name { font-size: 13px; font-weight: 500; color: var(--deep); margin-bottom: 4px; }
+.diagram-meta { font-size: 11px; color: var(--text-m); }
+
+/* ── REPORT CARD ────────────────────────────────────────────── */
+.report-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-s);
+}
+.report-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.report-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--deep); margin-bottom: 4px; }
+.report-meta { font-size: 11px; color: var(--text-m); }
+.report-body { font-size: 13px; color: var(--text-b); line-height: 1.7; background: var(--gold-05); border-radius: var(--radius-s); padding: 14px; border: 1px solid var(--border); }

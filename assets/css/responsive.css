@@ -1,0 +1,194 @@
+/* ============================================================
+   responsive.css — Breakpoints y mobile navigation bar
+   Usado por: components/mobile-nav.html · TODAS las páginas
+============================================================ */
+
+/* ── MOBILE SIDEBAR OVERLAY & HAMBURGER ─────────────────────── */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 36px; height: 36px;
+  background: none; border: 1px solid var(--border);
+  border-radius: var(--radius-s); cursor: pointer;
+  padding: 0; flex-shrink: 0;
+}
+.mobile-menu-btn span {
+  display: block; width: 18px; height: 2px;
+  background: var(--deep); border-radius: 2px;
+  transition: all var(--trans);
+}
+.mobile-sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 150;
+  background: rgba(14,30,46,0.6);
+  backdrop-filter: blur(2px);
+}
+.mobile-sidebar-overlay.open { display: block; }
+.exec-sidebar.mobile-open {
+  display: flex !important;
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 280px; z-index: 160;
+  box-shadow: 4px 0 32px rgba(14,30,46,0.4);
+  animation: slideInLeft 0.25s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+/* La barra mobile SOLO existe en móviles */
+.mobile-nav-bar { display: none; }
+
+/* ── 1200px: tabletas grandes ───────────────────────────────── */
+@media (max-width: 1200px) {
+  :root { --sidebar-w: 230px; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .exec-main { padding: 24px 24px; }
+}
+
+/* ── 1024px: tabletas ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --sidebar-w: 200px; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-2-3 { grid-template-columns: 1fr; }
+  .page-title { font-size: 22px; }
+  .exec-main { padding: 20px 18px; }
+  .login-roles { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+/* ── 768px: tabletas pequeñas / móviles ─────────────────────── */
+@media (max-width: 768px) {
+  :root { --header-h: 56px; }
+  .exec-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--header-h) 1fr;
+  }
+  .exec-sidebar { display: none; }
+  .exec-header { grid-column: 1; padding: 0 16px; }
+  .exec-main { padding: 16px 14px; }
+  .mobile-menu-btn { display: flex; }
+
+  /* Header compacto */
+  .header-datetime { display: none; }
+  .sync-time { display: none; }
+  .header-title { font-size: 16px; }
+  .header-badge { display: none; }
+  .live-indicator { font-size: 10px; padding: 4px 8px; }
+
+  /* Grids */
+  .stats-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .grid-2 { grid-template-columns: 1fr; gap: 14px; }
+  .grid-2-3 { grid-template-columns: 1fr; gap: 14px; }
+  .grid-3 { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Tipografía */
+  .page-title { font-size: 20px; }
+  .stat-value { font-size: 26px; }
+  .card-title { font-size: 15px; }
+
+  /* Page header */
+  .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  /* Matrix cards */
+  .matrix-exec-header { padding: 14px 16px; }
+  .matrix-exec-stats { grid-template-columns: repeat(3,1fr); gap: 6px; }
+
+  /* Modals */
+  .modal-box { padding: 22px 18px; margin: 12px; max-width: calc(100vw - 24px); }
+  .gerente-modal-box { padding: 22px 18px; margin: 12px; max-width: calc(100vw - 24px); }
+  .gm-grid-2 { grid-template-columns: 1fr; }
+
+  /* Tabs */
+  .tab-nav { overflow-x: auto; gap: 2px; }
+  .tab-btn { padding: 8px 12px; font-size: 12px; white-space: nowrap; }
+
+  /* Task row */
+  .task-row { flex-wrap: wrap; gap: 8px; }
+  .task-meta { font-size: 10px; }
+
+  /* Profile */
+  .profile-hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .profile-exec-hero { padding: 24px 20px; }
+  .profile-exec-name { font-size: 22px; }
+
+  /* Detail hero */
+  .matrix-detail-hero { flex-direction: column; padding: 20px; gap: 12px; }
+  .matrix-detail-hero::after { display: none; }
+  .detail-hero-title { font-size: 20px; }
+
+  /* Comments */
+  .compose-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .btn-comment { width: 100%; justify-content: center; }
+  .compose-type-select { width: 100%; }
+
+  /* Login */
+  .login-roles { grid-template-columns: 1fr; gap: 10px; }
+  .login-brand-name { font-size: 24px; }
+  .login-container { padding: 24px 16px 80px; }
+  .login-brand { margin-bottom: 20px; }
+  .role-card { padding: 16px 14px; }
+  #loginScreen { align-items: flex-start; }
+
+  /* Bottom mobile nav bar */
+  .mobile-nav-bar {
+    display: flex;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--deep);
+    border-top: 1px solid rgba(107,158,196,0.15);
+    z-index: 200;
+    padding: 6px 0 max(6px, env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(30,58,82,0.2);
+  }
+  .mobile-nav-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 3px; padding: 6px 4px;
+    color: rgba(214,232,245,0.5);
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; transition: color var(--trans);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-nav-item .mn-icon { font-size: 18px; }
+  .mobile-nav-item.active { color: var(--gold); }
+  .mobile-nav-item:active { color: var(--cream); }
+
+  /* Padding inferior para no quedar tapado por la nav */
+  .exec-main { padding-bottom: 90px; }
+}
+
+/* ── 480px: móviles pequeños ────────────────────────────────── */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-card { padding: 14px 12px; }
+  .stat-value { font-size: 22px; }
+  .stat-label { font-size: 10px; }
+  .stat-icon-bg { font-size: 26px; }
+
+  .page-title { font-size: 18px; }
+  .exec-main { padding: 12px 10px; padding-bottom: 90px; }
+
+  .card { padding: 14px 12px; }
+  .matrix-exec-stats { grid-template-columns: repeat(3,1fr); gap: 4px; }
+
+  /* Ocultar cols menos importantes en tablas */
+  .table-hide-mobile { display: none; }
+
+  .modal-box { padding: 18px 14px; }
+  .gerente-modal-box { padding: 18px 14px; }
+  .modal-title { font-size: 18px; }
+
+  .login-brand-icon { width: 46px; height: 46px; font-size: 22px; }
+  .login-brand-name { font-size: 22px; }
+  .role-icon { font-size: 26px; }
+  .role-name { font-size: 16px; }
+  .role-desc { font-size: 10px; }
+  .role-perms { gap: 3px; }
+  .role-perm-tag { font-size: 8px; padding: 2px 5px; }
+
+  .profile-exec-avatar { width: 64px; height: 64px; font-size: 22px; }
+  .profile-exec-name { font-size: 20px; }
+  .detail-hero-title { font-size: 18px; }
+}

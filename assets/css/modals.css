@@ -1,0 +1,147 @@
+/* ============================================================
+   modals.css — Modales: Petición, Gerente CRUD
+   Usado por: modals/modals.html · abrirModalPeticion() · openGMModal()
+============================================================ */
+
+/* ── MODAL OVERLAY / BOX BASE ───────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(20,38,56,0.55); backdrop-filter: blur(4px);
+  z-index: 500; display: flex; align-items: center; justify-content: center;
+  animation: fadeInUp 0.2s ease;
+}
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-g);
+  border-radius: var(--radius-l);
+  padding: 30px 32px;
+  width: 100%; max-width: 480px;
+  box-shadow: var(--shadow-l);
+  position: relative;
+}
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; color: var(--deep);
+  margin-bottom: 6px;
+}
+.modal-sub { font-size: 12px; color: var(--text-m); margin-bottom: 22px; }
+.modal-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-m);
+  display: block; margin-bottom: 6px;
+}
+.modal-input {
+  width: 100%; background: var(--bg-main);
+  border: 1px solid var(--border-g); border-radius: var(--radius-s);
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; color: var(--text-b); outline: none;
+  transition: border-color var(--trans); margin-bottom: 14px;
+}
+.modal-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-10); }
+.modal-input.error { border-color: var(--red); }
+.modal-textarea {
+  width: 100%; background: var(--bg-main);
+  border: 1px solid var(--border-g); border-radius: var(--radius-s);
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; color: var(--text-b); outline: none;
+  resize: none; min-height: 80px;
+  transition: border-color var(--trans); margin-bottom: 14px;
+}
+.modal-textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-10); }
+.modal-error { font-size: 11px; color: var(--red); margin-top: -10px; margin-bottom: 12px; display: none; }
+.modal-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; }
+.btn-modal-cancel {
+  background: none; border: 1px solid var(--border);
+  border-radius: var(--radius-s); padding: 9px 18px;
+  font-size: 13px; color: var(--text-m); cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all var(--trans);
+}
+.btn-modal-cancel:hover { background: var(--deep-15); color: var(--deep); }
+.btn-modal-submit {
+  background: var(--deep); color: var(--cream);
+  border: none; border-radius: var(--radius-s);
+  padding: 9px 22px; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: all var(--trans);
+}
+.btn-modal-submit:hover { background: #2B5980; }
+.btn-modal-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-nueva-peticion {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--deep); color: var(--cream);
+  border: none; border-radius: var(--radius-s);
+  padding: 8px 16px; font-size: 12.5px; font-weight: 500;
+  cursor: pointer; transition: all var(--trans);
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-nueva-peticion:hover { background: #2B5980; transform: translateY(-1px); box-shadow: var(--shadow-s); }
+
+/* ── GERENTE CRUD MODAL ─────────────────────────────────────── */
+#modalGerenteOverlay {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(20,38,56,0.6); backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center;
+  animation: fadeInUp 0.2s ease;
+}
+#modalGerenteOverlay.open { display: flex; }
+.gerente-modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-g);
+  border-radius: var(--radius-l);
+  padding: 30px 32px;
+  width: 100%; max-width: 520px;
+  box-shadow: var(--shadow-l);
+  max-height: 90vh; overflow-y: auto;
+}
+.gerente-modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; color: var(--deep);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.gm-field { margin-bottom: 16px; }
+.gm-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-m);
+  display: block; margin-bottom: 6px;
+}
+.gm-required { color: var(--red); }
+.gm-input, .gm-select, .gm-textarea {
+  width: 100%; background: var(--bg-main);
+  border: 1px solid var(--border-g); border-radius: var(--radius-s);
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; color: var(--text-b); outline: none;
+  transition: border-color var(--trans);
+}
+.gm-input:focus, .gm-select:focus, .gm-textarea:focus {
+  border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-10);
+}
+.gm-textarea { resize: vertical; min-height: 80px; }
+.gm-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.gm-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+.gm-info-note {
+  font-size: 11px; color: var(--text-m);
+  background: var(--gold-05); border: 1px solid var(--border);
+  border-radius: var(--radius-s); padding: 10px 12px;
+  margin-bottom: 16px; line-height: 1.6;
+}
+
+/* ── GERENTE ACTION BUTTONS ─────────────────────────────────── */
+.btn-gerente {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--deep); color: var(--cream);
+  border: none; border-radius: var(--radius-s);
+  padding: 8px 16px; font-size: 12.5px; font-weight: 500;
+  cursor: pointer; transition: all var(--trans);
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-gerente:hover { background: #2B5980; transform: translateY(-1px); box-shadow: var(--shadow-s); }
+.btn-gerente-outline {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; color: var(--text-m);
+  border: 1px solid var(--border); border-radius: var(--radius-s);
+  padding: 8px 16px; font-size: 12.5px; font-weight: 500;
+  cursor: pointer; transition: all var(--trans);
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-gerente-outline:hover { background: var(--gold-10); color: var(--deep); border-color: var(--border-g); }

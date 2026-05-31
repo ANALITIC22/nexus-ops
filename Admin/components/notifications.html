@@ -1,0 +1,21 @@
+<!--
+  COMPONENTE: Panel de Notificaciones (tiempo real)
+  Archivo: components/notifications.html
+-->
+
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-header">
+    <div class="notif-title">Notificaciones</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="btn btn-ghost btn-sm" id="btnMarcarTodo" onclick="marcarTodasLeidas()" style="font-size:11px">
+        Marcar todo leído
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="toggleNotif()">✕</button>
+    </div>
+  </div>
+  <div id="notifList" style="max-height:420px;overflow-y:auto">
+    <div style="text-align:center;padding:32px 16px;color:var(--text-m);font-size:13px">
+      Cargando notificaciones...
+    </div>
+  </div>
+</div>

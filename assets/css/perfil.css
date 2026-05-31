@@ -1,0 +1,51 @@
+/* ============================================================
+   perfil.css — Perfil del Analista: hero, skills, matrices
+   Usado por: pages/perfil.html · renderPerfilExec() en app.js
+============================================================ */
+
+/* ── PROFILE HERO ───────────────────────────────────────────── */
+.profile-exec-hero {
+  background: linear-gradient(135deg, var(--deep) 0%, #2B5980 60%, var(--warm) 100%);
+  border-radius: var(--radius-l);
+  padding: 36px 36px 28px;
+  position: relative; overflow: hidden;
+  margin-bottom: 24px;
+}
+.profile-exec-hero::before {
+  content: ''; position: absolute;
+  right: -40px; top: -40px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(107,158,196,0.08);
+}
+.profile-exec-hero::after {
+  content: ''; position: absolute;
+  right: 40px; bottom: -60px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: rgba(211,171,128,0.05);
+}
+.profile-hero-inner { position: relative; z-index: 1; display: flex; gap: 28px; align-items: center; }
+.profile-exec-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--cream));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 700; color: var(--deep);
+  border: 3px solid rgba(107,158,196,0.2);
+  flex-shrink: 0;
+}
+.profile-exec-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+.profile-exec-role { font-size: 13px; color: var(--gold); margin-bottom: 12px; }
+.profile-exec-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.profile-exec-tag {
+  background: rgba(107,158,196,0.1); color: var(--cream);
+  font-size: 11px; padding: 4px 12px; border-radius: 20px;
+  border: 1px solid rgba(107,158,196,0.15);
+}
+
+/* ── SKILLS ─────────────────────────────────────────────────── */
+.skill-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.skill-name { font-size: 13px; color: var(--text-b); min-width: 140px; }
+.skill-bar-wrap { flex: 1; background: var(--deep-15); border-radius: 20px; height: 7px; overflow: hidden; }
+.skill-bar-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, var(--gold), var(--warm)); }

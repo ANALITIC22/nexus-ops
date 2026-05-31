@@ -1,16 +1,13 @@
 <section class="exec-page" id="page-tareas">
-      <div class="page-header">
-        <div><div class="page-title">Tareas</div><div class="page-subtitle">Estado actual de todas las tareas operativas</div></div>
-      </div>
-      <div class="card">
-        <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>Estado</th><th>Tarea</th><th>Responsable</th>
-              <th>Prioridad</th><th>Avance</th><th>Fecha</th><th>Matriz</th>
-            </tr></thead>
-            <tbody id="tareasTable"><tr><td colspan="7" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+  <div class="page-header">
+    <div>
+      <div class="page-title">Tareas</div>
+      <div class="page-subtitle">Estado operativo de tareas agrupadas por matriz</div>
+    </div>
+    <div id="tareas-summary-badges" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"></div>
+  </div>
+  <!-- Filtro rápido -->
+  <div id="tareas-filter-bar" style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap"></div>
+  <!-- Acordeones por matriz -->
+  <div id="tareasByMatrix"></div>
+</section>

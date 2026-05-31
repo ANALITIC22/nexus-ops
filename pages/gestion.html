@@ -1,6 +1,30 @@
 <section class="exec-page" id="page-gestion">
       <div class="page-header">
-        <div><div class="page-title">Gestión Operativa</div><div class="page-subtitle">Bitácora de actividades del analista</div></div>
+        <div>
+          <div class="page-title">Gestión Operativa</div>
+          <div class="page-subtitle">Bitácora de actividades del analista</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input type="text" id="gestionSearch" class="filter-input"
+            style="font-size:11px;min-width:160px"
+            placeholder="🔍 Buscar registros..."
+            oninput="applyGestionFilters()">
+          <select class="filter-select" id="gestionFilterMatriz" onchange="applyGestionFilters()" style="font-size:11px">
+            <option value="">Todas las matrices</option>
+          </select>
+          <select class="filter-select" id="gestionFilterTipo" onchange="applyGestionFilters()" style="font-size:11px">
+            <option value="">Todos los tipos</option>
+            <option value="incidente">Incidente</option>
+            <option value="monitoreo">Monitoreo</option>
+            <option value="validacion">Validación</option>
+          </select>
+        </div>
       </div>
-      <div id="gestionExecList"><div class="loading-state"><div class="loading-spinner"></div></div></div>
+      <div id="gestionExecList">
+        <div class="empty-state">
+          <div class="empty-icon">✎</div>
+          <div class="empty-title">Sin registros aún</div>
+          <div class="empty-text">Los registros de gestión operativa aparecerán aquí.<br>Use el panel de administración para añadir entradas a la bitácora.</div>
+        </div>
+      </div>
     </section>

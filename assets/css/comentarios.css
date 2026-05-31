@@ -1,0 +1,122 @@
+/* ============================================================
+   comentarios.css — Sistema de comentarios y compose box
+   Usado por: pages/detalle.html (tab-comentarios-det)
+             pages/gm-detalle.html (gmd-comentarios)
+             renderDetalleComments() · renderGMDetalleComments()
+============================================================ */
+
+/* ── COMMENT SECTION WRAPPER ────────────────────────────────── */
+.comments-section { margin-top: 28px; }
+.comments-section .section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600; color: var(--deep);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.comment-count {
+  background: var(--gold-10); border: 1px solid var(--border-g);
+  color: var(--warm); font-size: 11px; font-weight: 600;
+  padding: 2px 9px; border-radius: 20px; font-family: 'DM Mono', monospace;
+}
+
+/* ── COMPOSE BOX ────────────────────────────────────────────── */
+.comment-compose {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-s);
+}
+.compose-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.compose-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--warm));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--deep); flex-shrink: 0;
+}
+.compose-label { font-size: 13px; font-weight: 500; color: var(--deep); }
+.compose-sublabel { font-size: 11px; color: var(--text-m); }
+.compose-textarea {
+  width: 100%;
+  background: var(--bg-main);
+  border: 1px solid var(--border-g);
+  border-radius: var(--radius-s);
+  padding: 12px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; color: var(--text-b);
+  resize: none; min-height: 90px;
+  transition: border-color var(--trans);
+  outline: none;
+}
+.compose-textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-10); }
+.compose-textarea::placeholder { color: var(--text-l); }
+.compose-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.compose-type-select {
+  background: var(--bg-main); border: 1px solid var(--border);
+  border-radius: var(--radius-s); padding: 6px 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text-b);
+  outline: none; cursor: pointer;
+}
+.btn-comment {
+  background: var(--deep); color: var(--cream);
+  border: none; border-radius: var(--radius-s);
+  padding: 8px 20px; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all var(--trans);
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-comment:hover { background: #2B5980; transform: translateY(-1px); box-shadow: var(--shadow-s); }
+.btn-comment:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── COMMENT CARDS ──────────────────────────────────────────── */
+.comment-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-s);
+  animation: fadeInUp 0.3s ease;
+  position: relative;
+}
+.comment-card.type-aprobado { border-left: 3px solid var(--green); }
+.comment-card.type-observacion { border-left: 3px solid var(--yellow); }
+.comment-card.type-urgente { border-left: 3px solid var(--red); }
+.comment-card.type-general { border-left: 3px solid var(--gold); }
+.comment-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.comment-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--deep), var(--warm));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--cream); flex-shrink: 0;
+}
+.comment-author { font-size: 13px; font-weight: 500; color: var(--deep); }
+.comment-role { font-size: 10px; color: var(--text-m); }
+.comment-meta { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.comment-time { font-size: 10px; color: var(--text-l); font-family: 'DM Mono', monospace; }
+.comment-body { font-size: 13px; color: var(--text-b); line-height: 1.65; }
+.comment-section-ref {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--text-m);
+}
+.comment-ref-badge {
+  background: var(--gold-10); color: var(--warm);
+  padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;
+  border: 1px solid var(--border-g);
+}
+.comment-actions { display: flex; gap: 6px; margin-top: 10px; }
+.comment-reply-btn {
+  background: none; border: 1px solid var(--border);
+  border-radius: var(--radius-s); padding: 4px 10px;
+  font-size: 11px; color: var(--text-m); cursor: pointer;
+  transition: all var(--trans); font-family: 'DM Sans', sans-serif;
+}
+.comment-reply-btn:hover { background: var(--gold-10); color: var(--warm); border-color: var(--border-g); }
+.delete-comment-btn {
+  background: none; border: none; cursor: pointer; padding: 4px 6px;
+  color: var(--text-l); font-size: 11px; border-radius: 4px;
+  transition: all var(--trans);
+}
+.delete-comment-btn:hover { background: var(--red-bg); color: var(--red); }

@@ -1,0 +1,109 @@
+<!--
+  PÁGINA: Dashboard
+  Archivo: pages/dashboard.html
+-->
+<section class="page active" id="page-dashboard">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Panel de Control</div>
+      <div class="page-subtitle" id="dashSubtitle">Resumen operativo general</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary" onclick="navigate('matrices',null)">Ver Matrices</button>
+      <button class="btn btn-primary" onclick="openModal('modal-nueva-matriz')">+ Nueva Matriz</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Matrices Activas</div>
+      <div class="stat-value" id="dashStatMatrices">–</div>
+      <div class="stat-delta" id="dashStatMatricesDelta"></div>
+      <div class="stat-icon-bg">◈</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Tareas Pendientes</div>
+      <div class="stat-value" id="dashStatTareas">–</div>
+      <div class="stat-delta" id="dashStatTareasDelta"></div>
+      <div class="stat-icon-bg">☑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Objetivos en Progreso</div>
+      <div class="stat-value" id="dashStatObjetivos">–</div>
+      <div class="stat-delta" id="dashStatObjetivosDelta"></div>
+      <div class="stat-icon-bg">◎</div>
+    </div>
+    <div class="stat-card" style="cursor:pointer" onclick="navigate('peticiones',null)">
+      <div class="stat-label">Peticiones Pendientes</div>
+      <div class="stat-value" id="dashPeticionesPendientes" style="color:var(--yellow)">–</div>
+      <div class="stat-delta" id="dashPeticionesDelta">Cargando...</div>
+      <div class="stat-icon-bg">📋</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="grid-2" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Progreso por Matriz</div>
+        <span class="badge badge-gold" id="dashChartMes">—</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="chartMatrices"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Estado de Tareas</div>
+      </div>
+      <div class="chart-container" style="height:160px">
+        <canvas id="chartTareas"></canvas>
+      </div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span class="progress-label">Completadas</span>
+            <span class="progress-pct" id="dashPctComp">0%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill green" id="dashBarComp" style="width:0%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span class="progress-label">En Progreso</span>
+            <span class="progress-pct" id="dashPctProg">0%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill yellow" id="dashBarProg" style="width:0%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <span class="progress-label">Críticas</span>
+            <span class="progress-pct" id="dashPctCrit">0%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill red" id="dashBarCrit" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Matrices recientes + Actividad -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Matrices Recientes</div>
+        <button class="btn btn-ghost btn-sm" onclick="navigate('matrices',null)">Ver todas</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div id="dashMatricesList"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Actividad Reciente</div>
+      </div>
+      <div id="dashTimeline" class="timeline"></div>
+    </div>
+  </div>
+</section>

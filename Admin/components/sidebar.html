@@ -1,0 +1,100 @@
+<!--
+  COMPONENTE: Sidebar
+  Archivo: components/sidebar.html
+  Inyectado en: #sidebar-root (index.html)
+-->
+
+<div class="sidebar-brand">
+  <div class="brand-logo">
+    <div class="brand-icon">⬡</div>
+    <span class="brand-name">NEXUS OPS</span>
+  </div>
+  <div class="brand-sub">Panel Administrador</div>
+</div>
+
+<nav class="sidebar-nav">
+  <div class="nav-section-label">Principal</div>
+
+  <a class="nav-item active" onclick="navigate('dashboard',this)">
+    <span class="nav-icon">⊞</span>
+    <span>Dashboard</span>
+  </a>
+  <a class="nav-item" onclick="navigate('matrices',this)">
+    <span class="nav-icon">◈</span>
+    <span>Matrices Operativas</span>
+    <span id="navMatricesBadge" class="nav-badge">0</span>
+  </a>
+
+  <div class="nav-section-label">Gestión</div>
+
+  <a class="nav-item" onclick="navigate('objetivos',this)">
+    <span class="nav-icon">◎</span>
+    <span>Objetivos</span>
+    <span id="navObjetivosBadge" class="nav-badge">0</span>
+  </a>
+  <a class="nav-item" onclick="navigate('tareas',this)">
+    <span class="nav-icon">☑</span>
+    <span>Tareas</span>
+    <span id="navTareasBadge" class="nav-badge">0</span>
+  </a>
+  <a class="nav-item" onclick="navigate('peticiones',this)">
+    <span class="nav-icon">📋</span>
+    <span>Peticiones</span>
+    <span id="navPeticionesBadge" class="nav-badge" style="display:none;background:var(--red);color:#fff">0</span>
+  </a>
+  <a class="nav-item" onclick="navigate('gestion',this)">
+    <span class="nav-icon">✎</span>
+    <span>Gestión Operativa</span>
+  </a>
+
+  <div class="nav-section-label">Documentación</div>
+
+  <a class="nav-item" onclick="navigate('diagramas',this)">
+    <span class="nav-icon">⬡</span>
+    <span>Diagramas</span>
+  </a>
+  <a class="nav-item" onclick="navigate('actividad',this)">
+    <span class="nav-icon">⊙</span>
+    <span>Actividad</span>
+  </a>
+  <a class="nav-item" onclick="navigate('reportes',this)">
+    <span class="nav-icon">▦</span>
+    <span>Reportes</span>
+  </a>
+
+  <div class="nav-section-label">Usuario</div>
+
+  <a class="nav-item" onclick="navigate('perfil',this)">
+    <span class="nav-icon">◉</span>
+    <span>Perfil Profesional</span>
+  </a>
+  <a class="nav-item" onclick="navigate('config',this)">
+    <span class="nav-icon">⚙</span>
+    <span>Configuración</span>
+  </a>
+
+  <div class="nav-section-label">Administración</div>
+
+  <a class="nav-item" onclick="navigate('cuentas-admin',this)">
+    <span class="nav-icon">👥</span>
+    <span>Cuentas Admin</span>
+    <span id="navAdminsBadge" class="nav-badge" style="display:none"></span>
+  </a>
+</nav>
+
+<div class="sidebar-footer">
+  <div class="sidebar-user" onclick="navigate('perfil',null)">
+    <div class="user-avatar-sm">AC</div>
+    <div class="user-info-sm">
+      <div class="user-name-sm">Analista Corp.</div>
+      <div class="user-role-sm">Admin · Activo</div>
+    </div>
+  </div>
+  <button
+    onclick="logoutAdminUI()"
+    title="Cerrar sesión"
+    style="margin:0 16px 16px;width:calc(100% - 32px);padding:8px;background:rgba(139,46,46,0.12);border:1px solid rgba(139,46,46,0.2);border-radius:8px;color:var(--cream);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s"
+    onmouseover="this.style.background='rgba(139,46,46,0.25)'"
+    onmouseout="this.style.background='rgba(139,46,46,0.12)'"
+  >⏻ Cerrar sesión</button>
+</div>

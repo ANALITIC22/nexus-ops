@@ -1,16 +1,13 @@
 <section class="exec-page" id="page-objetivos">
-      <div class="page-header">
-        <div><div class="page-title">Objetivos</div><div class="page-subtitle">Todos los objetivos registrados por el analista</div></div>
-      </div>
-      <div class="card">
-        <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>Objetivo</th><th>Matriz</th><th>Prioridad</th>
-              <th>Estado</th><th>Avance</th><th>Fecha Límite</th>
-            </tr></thead>
-            <tbody id="objetivosTable"><tr><td colspan="6" style="text-align:center;padding:30px"><div class="loading-spinner" style="margin:0 auto"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+  <div class="page-header">
+    <div>
+      <div class="page-title">Objetivos</div>
+      <div class="page-subtitle">Seguimiento de objetivos agrupados por matriz operativa</div>
+    </div>
+    <div id="objetivos-summary-badges" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"></div>
+  </div>
+  <!-- Filtro rápido por estado -->
+  <div id="objetivos-filter-bar" style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap"></div>
+  <!-- Acordeones por matriz -->
+  <div id="objetivosByMatrix"></div>
+</section>

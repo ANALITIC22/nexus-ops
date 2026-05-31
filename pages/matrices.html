@@ -4,7 +4,40 @@
           <div class="page-title">Matrices Operativas</div>
           <div class="page-subtitle">Todos los aplicativos y operaciones gestionados</div>
         </div>
+        <div id="matricesCount" style="font-size:11px;color:var(--text-m);font-family:'DM Mono',monospace;align-self:center"></div>
       </div>
+
+      <!-- Barra de filtros -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:20px">
+        <div style="position:relative;flex:1;min-width:200px">
+          <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:13px">🔍</span>
+          <input type="text" id="matSearch" class="filter-input"
+            style="padding-left:32px;width:100%;box-sizing:border-box"
+            placeholder="Buscar por nombre, descripción o responsable..."
+            oninput="applyMatricesFilters()">
+        </div>
+        <select class="filter-select" id="matFilterTipo" onchange="applyMatricesFilters()">
+          <option value="">Todos los tipos</option>
+          <option>Aplicativo</option>
+          <option>Operación</option>
+          <option>Plataforma</option>
+          <option>Sistema</option>
+          <option>Proceso</option>
+        </select>
+        <select class="filter-select" id="matFilterArea" onchange="applyMatricesFilters()">
+          <option value="">Todas las áreas</option>
+        </select>
+        <select class="filter-select" id="matFilterEstado" onchange="applyMatricesFilters()">
+          <option value="">Todos los estados</option>
+          <option>Al día</option>
+          <option>Pendiente</option>
+          <option>Crítico</option>
+        </select>
+        <button class="btn btn-ghost"
+          style="font-size:11px;padding:6px 12px;color:var(--text-m)"
+          onclick="clearMatricesFilters()">✕ Limpiar</button>
+      </div>
+
       <div id="matricesExecGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px">
         <div class="loading-state"><div class="loading-spinner"></div></div>
       </div>

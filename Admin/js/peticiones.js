@@ -236,3 +236,47 @@ export function updatePeticionesBadge(pendientes) {
     badge.style.display = pendientes > 0 ? '' : 'none';
   }
 }
+
+// ── Peticiones originadas desde correo (Outlook) ─────────────
+// correos.js dispara este evento al convertir un email en petición
+document.addEventListener('nexus:nuevaPeticionDesdeCorreo', async (e) => {
+  const peticion = e.detail;
+
+  // Construir objeto compatible con el sistema de tareas/peticiones
+  const nuevaTarea = {
+    id:             'pet_correo_' + Date.now(),
+    titulo:         peticion.titulo,
+    descripcion:    peticion.descripcion || '',
+    matrizId:       peticion.matrizId,
+    prioridad:      peticion.prioridad   || 'Media',
+    estado:         'Pendiente',
+    esPeticion:     true,
+    peticionEstado: 'pendiente',
+    solicitante:    peticion.correoOrigen?.remitente || 'Cliente vía correo',
+    fecha:          new Date().toLocaleDateString('es-CO'),
+    fechaLimite:    peticion.fechaLimite || null,
+    origen:         'correo',           // trazabilidad: vino de email
+    correoOrigen:   peticion.correoOrigen || {},
+    creadoPor:      peticion.creadoPor  || '',
+    timestamp:      peticion.timestamp  || new Date().toISOString()
+  };
+
+  // 1. Guardar en Firebase (mismo flujo que las tareas normales)
+  try {
+    const { db, collection, addDoc } = await import('./firebase.js');
+    const docRef = await addDoc(collection(db, 'tareas'), nuevaTarea);
+    nuevaTarea.id = docRef.id;
+    showToast('📬 Petición desde correo guardada en Firebase', 'success');
+  } catch (fbErr) {
+    console.warn('[Correos] Firebase no disponible, guardando solo en AppState:', fbErr);
+  }
+
+  // 2. Actualizar AppState local para feedback inmediato
+  if (Array.isArray(AppState.tareas)) {
+    AppState.tareas.unshift(nuevaTarea);
+  }
+
+  // 3. Re-renderizar peticiones y actualizar badge
+  renderPeticiones();
+  updatePeticionesBadge();
+});

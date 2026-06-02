@@ -1,0 +1,382 @@
+/* ============================================================
+   NEXUS OPS — correos.css
+   Estilos para la bandeja de correos (Outlook integration)
+   Importar en: index.html  <link rel="stylesheet" href="css/correos.css">
+   ============================================================ */
+
+
+/* ── Lista de correos ────────────────────────────────────────── */
+
+.correo-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-left: 3px solid transparent;
+}
+
+.correo-item:hover {
+  background: var(--gold-10);
+}
+
+.correo-item.no-leido {
+  border-left-color: var(--gold);
+  background: rgba(211, 171, 128, 0.05);
+}
+
+.correo-item.activo {
+  background: var(--gold-10);
+  border-left-color: var(--deep);
+}
+
+.correo-item.activo:hover {
+  background: rgba(211, 171, 128, 0.2);
+}
+
+/* ── Nombre del remitente ────────────────────────────────────── */
+
+.correo-remitente {
+  font-size: 12px;
+  color: var(--deep);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.correo-item.no-leido .correo-remitente {
+  font-weight: 600;
+}
+
+/* ── Asunto ──────────────────────────────────────────────────── */
+
+.correo-asunto {
+  font-size: 12px;
+  color: var(--text-h);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.correo-item.no-leido .correo-asunto {
+  font-weight: 600;
+}
+
+/* ── Preview del cuerpo ──────────────────────────────────────── */
+
+.correo-preview {
+  font-size: 11px;
+  color: var(--text-m);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+}
+
+/* ── Panel de detalle del correo ─────────────────────────────── */
+
+#correo-detalle-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.correo-detalle-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.correo-detalle-cuerpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.correo-detalle-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  background: var(--bg-main);
+}
+
+/* ── Cuerpo HTML del correo (sanitizado) ─────────────────────── */
+
+.correo-body-html {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-b);
+  max-width: 700px;
+}
+
+/* Reset de estilos del HTML externo (correos recibidos) */
+.correo-body-html * {
+  max-width: 100% !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+.correo-body-html img {
+  height: auto;
+  border-radius: 6px;
+}
+
+.correo-body-html a {
+  color: var(--warm);
+  text-decoration: underline;
+}
+
+.correo-body-html table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+
+.correo-body-html td,
+.correo-body-html th {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+}
+
+/* ── Botón de filtro de correos ──────────────────────────────── */
+
+.correo-filtro-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-m);
+  transition: all 0.15s;
+}
+
+.correo-filtro-btn:hover {
+  background: var(--gold-10);
+  color: var(--deep);
+  border-color: var(--border-g);
+}
+
+.correo-filtro-btn.activo {
+  background: var(--deep);
+  color: var(--cream);
+  border-color: var(--deep);
+}
+
+/* ── Badge de correos no leídos en el sidebar ────────────────── */
+
+#navCorreosBadge {
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* ── Layout de la bandeja (split panel) ──────────────────────── */
+
+.correos-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  height: calc(100vh - 140px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.correos-lista-panel {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.correos-lista-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.correos-lista-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.correos-lista-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+/* ── Estado vacío / cargando ─────────────────────────────────── */
+
+.correos-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-m);
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.correos-empty-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  opacity: 0.3;
+}
+
+.correos-empty-text {
+  font-size: 12px;
+  color: var(--text-m);
+  line-height: 1.6;
+}
+
+/* ── Pantalla de conexión / configuración ────────────────────── */
+
+.correos-setup-card {
+  background: var(--gold-10);
+  border: 1px solid var(--border-g);
+  border-radius: var(--radius-m);
+  padding: 20px 28px;
+  text-align: left;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.correos-setup-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.correos-setup-step-num {
+  min-width: 22px;
+  height: 22px;
+  background: var(--deep);
+  color: var(--cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.correos-setup-step-text {
+  font-size: 13px;
+  color: var(--text-b);
+  line-height: 1.5;
+}
+
+/* ── Botón de conectar Microsoft ─────────────────────────────── */
+
+.btn-ms-connect {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: var(--deep);
+  color: var(--cream);
+  border: none;
+  border-radius: var(--radius-m);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: var(--shadow-m);
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.btn-ms-connect:hover {
+  opacity: 0.85;
+}
+
+/* ── Indicador de prioridad del correo ───────────────────────── */
+
+.correo-prioridad-alta {
+  color: var(--red);
+  font-size: 12px;
+}
+
+.correo-prioridad-normal {
+  display: none; /* no mostrar si es normal */
+}
+
+/* ── Skeleton de carga ───────────────────────────────────────── */
+
+.correo-skeleton {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.correo-skeleton-line {
+  height: 10px;
+  background: var(--border);
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.correo-skeleton-line.short { width: 40%; }
+.correo-skeleton-line.medium { width: 65%; }
+.correo-skeleton-line.long { width: 90%; }
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Indicador de origen "correo" en tarjeta de petición ─────── */
+
+.peticion-origen-correo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--warm);
+  background: rgba(150, 120, 111, 0.1);
+  border: 1px solid rgba(150, 120, 111, 0.2);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-top: 4px;
+}
+
+/* ── Responsive: ocultar lista en móvil cuando hay detalle ───── */
+
+@media (max-width: 768px) {
+  .correos-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .correos-lista-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 45vh;
+  }
+
+  #correo-detalle-panel {
+    min-height: 50vh;
+  }
+}

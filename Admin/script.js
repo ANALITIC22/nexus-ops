@@ -81,6 +81,22 @@ import {
   responderPeticion
 } from './js/peticiones.js';
 
+// ── Correos / Outlook ─────────────────────────────────────────
+import { initOutlook }                from './js/outlook.js';
+import {
+  renderCorreos,
+  cargarCorreos,
+  filtrarCorreos,
+  buscarCorreos,
+  recargarCorreos,
+  desconectarCuentaMS,
+  abrirCorreo,
+  abrirModalConvertir,
+  confirmarConvertirPeticion,
+  cancelarConvertir,
+  copiarTextoCorreo
+} from './js/correos.js';
+
 // ============================================================
 // EXPONER AL DOM (requerido por onclick="..." en el HTML)
 // ============================================================
@@ -155,6 +171,22 @@ window.renderPeticiones      = renderPeticiones;
 window.filterPeticiones      = filterPeticiones;
 window.responderPeticion     = responderPeticion;
 
+// Correos / Outlook
+window.renderCorreos              = renderCorreos;
+window.cargarCorreos              = cargarCorreos;
+window.filtrarCorreos             = filtrarCorreos;
+window.buscarCorreos              = buscarCorreos;
+window.recargarCorreos            = recargarCorreos;
+window.desconectarCuentaMS        = desconectarCuentaMS;
+window.abrirCorreo                = abrirCorreo;
+window.abrirModalConvertir        = abrirModalConvertir;
+window.confirmarConvertirPeticion = confirmarConvertirPeticion;
+window.cancelarConvertir          = cancelarConvertir;
+window.copiarTextoCorreo          = copiarTextoCorreo;
+// Login Microsoft — delega a MSAL (msal-config.js)
+window.conectarMicrosoft       = () => window.msalSignIn?.();
+window.iniciarLoginMicrosoft   = () => window.msalSignIn?.();
+
 // Cuentas Admin / Auth
 window.loginAdminUI           = loginAdminUI;
 window.logoutAdminUI          = logoutAdminUI;
@@ -192,6 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Drag & Drop en zona de diagramas
   initDragAndDrop();
+
+  // Outlook — procesar callback OAuth si viene en el hash
+  initOutlook();
 
   // Render inicial
   renderMatricesGrid();

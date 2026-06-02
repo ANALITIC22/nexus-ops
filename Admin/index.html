@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="assets/diagramas.css">
   <link rel="stylesheet" href="assets/cuentas_admin.css">
+  <link rel="stylesheet" href="assets/correos.css">
 </head>
 <body>
 
@@ -45,19 +46,21 @@
     <!-- page-config         → pages/config.html       -->
     <!-- page-peticiones     → pages/peticiones.html   -->
     <!-- page-cuentas-admin  → pages/cuentas_admin.html -->
+    <!-- page-correos        → pages/correos.html      -->
   </main>
 
 </div><!-- end .app-layout -->
 
 <!-- ── MODALES ─────────────────────────────────────────────────── -->
 <!-- Contenido en: modals/ (uno por modal) -->
-<!-- modal-denegar-peticion → modals/modal-denegar-peticion.html -->
-<!-- modal-nueva-matriz     → modals/modal-nueva-matriz.html     -->
-<!-- modal-nuevo-objetivo   → modals/modal-nuevo-objetivo.html   -->
-<!-- modal-nueva-tarea      → modals/modal-nueva-tarea.html      -->
-<!-- modal-nuevo-diagrama   → modals/modal-nuevo-diagrama.html   -->
-<!-- modal-nuevo-reporte    → modals/modal-nuevo-reporte.html    -->
-<!-- modal-editar-perfil    → modals/modal-editar-perfil.html    -->
+<!-- modal-denegar-peticion        → modals/modal-denegar-peticion.html -->
+<!-- modal-nueva-matriz            → modals/modal-nueva-matriz.html     -->
+<!-- modal-nuevo-objetivo          → modals/modal-nuevo-objetivo.html   -->
+<!-- modal-nueva-tarea             → modals/modal-nueva-tarea.html      -->
+<!-- modal-nuevo-diagrama          → modals/modal-nuevo-diagrama.html   -->
+<!-- modal-nuevo-reporte           → modals/modal-nuevo-reporte.html    -->
+<!-- modal-editar-perfil           → modals/modal-editar-perfil.html    -->
+<!-- modal-correo-a-peticion       → modals/modals.html                 -->
 <div id="modals-root"></div>
 
 <!-- ── PANEL NOTIFICACIONES ────────────────────────────────────── -->
@@ -69,10 +72,14 @@
 
 <!-- ── SCRIPTS ─────────────────────────────────────────────────── -->
 <!--
-  Orden de carga:
-  1. loader.js    → carga dinámica de todos los fragmentos HTML
-  2. script.js    → lógica principal de la aplicación (módulo)
+  Orden de carga (CRÍTICO — no cambiar):
+  1. msal-browser  → librería oficial Microsoft (MSAL.js v2 · PKCE)
+  2. msal-config   → instancia MSAL, expone window.getGraphAccessToken
+  3. loader.js     → carga dinámica de todos los fragmentos HTML
+  4. script.js     → lógica principal de la aplicación (módulo ES)
 -->
+<script src="https://alcdn.msauth.net/browser/2.26.0/js/msal-browser.min.js"></script>
+<script src="msal-config.js"></script>
 <script src="assets/loader.js"></script>
 <script type="module" src="script.js"></script>
 

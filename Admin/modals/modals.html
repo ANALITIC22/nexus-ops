@@ -396,3 +396,110 @@
     </div>
   </div>
 </div>
+
+<!-- ============================================================
+     MODAL: Convertir Correo en Petición
+     ID: modal-correo-a-peticion
+     Disparado por: correos.js → abrirModalConvertir()
+     ============================================================ -->
+<div class="modal-overlay" id="modal-correo-a-peticion">
+  <div class="modal" style="max-width:580px">
+
+    <div class="modal-header">
+      <div class="modal-title">📋 Convertir Correo en Petición</div>
+      <button class="modal-close" onclick="window.cancelarConvertir()">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Info del correo origen (solo lectura) -->
+      <div style="background:var(--gold-10);border:1px solid var(--border-g);
+        border-radius:var(--radius-s);padding:14px 16px;margin-bottom:20px">
+        <div style="font-size:10px;font-weight:600;color:var(--text-l);text-transform:uppercase;
+          letter-spacing:0.06em;margin-bottom:8px">📧 Correo de origen</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div>
+            <div style="font-size:10px;color:var(--text-l)">Remitente</div>
+            <div style="font-size:12px;font-weight:500;color:var(--deep)" id="conv-remitente">–</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-l)">Email</div>
+            <div style="font-size:12px;color:var(--text-b)" id="conv-email">–</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-l)">Recibido</div>
+            <div style="font-size:12px;color:var(--text-b)" id="conv-fecha">–</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Campos editables -->
+      <div class="form-group">
+        <label class="form-label">Título de la petición <span style="color:var(--red)">*</span></label>
+        <input class="form-control" id="conv-titulo"
+          placeholder="Ej: Solicitud de acceso al módulo SAP...">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-group">
+          <label class="form-label">Tipo</label>
+          <select class="form-control" id="conv-tipo">
+            <option value="Solicitud">Solicitud</option>
+            <option value="Incidente">Incidente</option>
+            <option value="Consulta">Consulta</option>
+            <option value="Cambio">Cambio</option>
+            <option value="Información">Información</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Prioridad</label>
+          <select class="form-control" id="conv-prioridad">
+            <option value="Baja">🟢 Baja</option>
+            <option value="Media" selected>🟡 Media</option>
+            <option value="Alta">🔴 Alta</option>
+            <option value="Crítica">⚡ Crítica</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Matriz destino <span style="color:var(--red)">*</span></label>
+        <select class="form-control" id="conv-matriz">
+          <option value="">— Seleccionar Matriz —</option>
+        </select>
+        <div style="font-size:11px;color:var(--text-l);margin-top:5px">
+          La tarea resultante se asignará a esta matriz operativa
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Descripción / Detalle</label>
+        <textarea class="form-control" id="conv-descripcion"
+          style="min-height:90px;resize:vertical"
+          placeholder="Contexto adicional (pre-llenado desde el correo)..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Fecha límite <span style="color:var(--text-l)">(opcional)</span></label>
+        <input class="form-control" type="date" id="conv-fecha-limite">
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;
+        background:rgba(74,124,89,0.08);border:1px solid rgba(74,124,89,0.2);
+        border-radius:var(--radius-s);font-size:12px;color:var(--green)">
+        <span>📬</span>
+        <span>Esta petición quedará marcada como <strong>originada desde correo</strong>
+        para su trazabilidad.</span>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="window.cancelarConvertir()">Cancelar</button>
+      <button class="btn btn-primary" onclick="window.confirmarConvertirPeticion()">
+        ✓ Crear Petición
+      </button>
+    </div>
+
+  </div>
+</div>

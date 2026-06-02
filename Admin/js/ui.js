@@ -79,7 +79,8 @@ export function navigate(page, navEl) {
     perfil:          'Perfil Profesional',
     config:          'Configuración',
     'detalle-matriz':'Detalle de Matriz',
-    'cuentas-admin': 'Cuentas de Administrador'
+    'cuentas-admin': 'Cuentas de Administrador',
+    'correos':       'Bandeja de Correos'
   };
   const ht = document.getElementById('headerTitle');
   if (ht) ht.textContent = titles[page] || page;
@@ -95,6 +96,7 @@ export function navigate(page, navEl) {
   if (page === 'perfil')          renderProfileApps();
   if (page === 'dashboard')       updateDashboard();
   if (page === 'cuentas-admin')   window.renderCuentasAdmin?.();
+  if (page === 'correos')         window.renderCorreos?.();
 }
 
 // ── Modales ──────────────────────────────────────────────────

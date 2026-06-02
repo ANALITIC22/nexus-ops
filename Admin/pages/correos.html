@@ -1,0 +1,27 @@
+<!--
+  PÁGINA: Bandeja de Correos (Outlook)
+  Archivo: pages/correos.html
+  Inyectado en: #main-root por loader.js
+-->
+<section class="page" id="page-correos">
+  <div class="page-header">
+    <div class="page-title-area">
+      <div class="page-title">Bandeja de Correos</div>
+      <div class="page-subtitle">Correos de Outlook · Convierte solicitudes en peticiones</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-ghost" onclick="window.recargarCorreos()" id="btn-recargar-correos">
+        ↻ Actualizar
+      </button>
+    </div>
+  </div>
+  <!-- Contenido dinámico: lo gestiona correos.js -->
+  <div id="correos-contenido" style="min-height:400px">
+    <div style="display:flex;align-items:center;justify-content:center;height:400px;color:var(--text-m)">
+      <div style="text-align:center">
+        <div style="font-size:32px;margin-bottom:12px;opacity:0.3">✉️</div>
+        <div style="font-size:13px">Inicializando bandeja...</div>
+      </div>
+    </div>
+  </div>
+</section>

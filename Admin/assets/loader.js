@@ -43,6 +43,9 @@
     /* Cuentas de Administrador */
     { file: 'pages/cuentas_admin.html',     target: '#main-root',     method: 'append' },
 
+    /* Bandeja de Correos (Outlook) */
+    { file: 'pages/correos.html',           target: '#main-root',     method: 'append' },
+
     /* Modales */
     { file: 'modals/modals.html',           target: '#modals-root',   method: 'innerHTML' },
 

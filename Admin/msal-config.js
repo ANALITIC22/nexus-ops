@@ -11,7 +11,7 @@
 
 const msalConfig = {
   auth: {
-    clientId: "51e49207-a653-486b-8f9e-2d5889041894",  // ← REEMPLAZAR con tu Client ID de Azure
+    clientId: "e137a796-ca23-443f-843f-c96a40a219a5",  // ← REEMPLAZAR con tu Client ID de Azure
     authority: "https://login.microsoftonline.com/common",
     redirectUri: "https://analitic22.github.io/nexus-ops/Admin/"
   },
